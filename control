@@ -1,9 +1,9 @@
 Package: com.example.freegrid
 Name: FreeGrid
-Version: 0.1.0
+Version: 1.0.0
 Architecture: iphoneos-arm
-Depends: mobilesubstrate, preferenceloader
-Description: Place home screen icons in any grid slot, leaving gaps (iOS 18 style)
+Depends: mobilesubstrate, preferenceloader, firmware (>= 9.0), firmware (<< 10.0)
+Description: Free home screen icon placement: any grid slot, or anywhere
 Maintainer: silvan
 Author: silvan
 Section: Tweaks

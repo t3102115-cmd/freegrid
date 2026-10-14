@@ -1,0 +1,7 @@
+#!/bin/sh
+# A fresh install/upgrade clears an automatic crash-loop disable (a manual kill switch is left alone).
+if [ -f /var/mobile/.freegrid_disable ] && grep -q "auto-disabled" /var/mobile/.freegrid_disable 2>/dev/null; then
+	rm -f /var/mobile/.freegrid_disable
+fi
+rm -f /var/mobile/Library/Preferences/com.example.freegrid.boot
+exit 0

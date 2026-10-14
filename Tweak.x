@@ -76,6 +76,8 @@ typedef struct { int a; int b; } SBIconCoordinate; // {row, column}; we only pas
 @interface SBFolder : NSObject
 - (BOOL)isRootFolder;
 - (NSArray *)lists;
+- (NSString *)displayName;
+- (void)setDisplayName:(NSString *)name;
 @end
 @interface SBRootFolder : SBFolder
 - (SBIconListModel *)dock;
@@ -135,7 +137,10 @@ typedef struct { int a; int b; } SBIconCoordinate; // {row, column}; we only pas
 
 #pragma mark - Mode + helpers
 
+static BOOL sEnabled = YES;                       // master switch, read once at launch
 static BOOL sFreeMode = NO;                       // set once at launch from the Settings page
+static NSArray *sInheritPos;                      // a new folder takes over the position of the icon it replaces
+static NSTimeInterval sInheritUntil;
 static NSMutableDictionary *sFree;                // FREE mode: icon key -> @[x, y] (icon view origin)
 
 // FREE mode drag state: where the dragged icon's view currently is (list-view coordinates).
@@ -332,6 +337,28 @@ static NSArray *PageKeys(SBIconListModel *list, NSMutableArray *gapsOut) {
 
 %end
 
+#pragma mark - FREE mode: where does an icon with no saved position go?
+
+static BOOL OverlapsAnother(CGPoint p, SBIconListModel *m, SBIcon *except) {
+	for (unsigned i = 0; i < [m numberOfIcons]; i++) {
+		SBIcon *other = [m iconAtIndex:i];
+		if (!other || other == except || [other isPlaceholder]) continue;
+		NSArray *q = sFree[IconKey(other)];
+		if (q.count == 2 && fabs([q[0] floatValue] - p.x) < 30 && fabs([q[1] floatValue] - p.y) < 30) return YES;
+	}
+	return NO;
+}
+
+// Its stock slot if that is free, otherwise the first grid slot that does not sit on another icon.
+static CGPoint FreeSpot(SBIconListView *lv, SBIconListModel *m, SBIcon *ic, CGPoint stock) {
+	if (!OverlapsAnother(stock, m, ic)) return stock;
+	for (unsigned s = 0; s < [m maxNumberOfIcons]; s++) {
+		CGPoint so = [lv originForIconAtCoordinate:[lv iconCoordinateForIndex:s forOrientation:[lv orientation]]];
+		if (!OverlapsAnother(so, m, ic)) return so;
+	}
+	return stock;
+}
+
 #pragma mark - Drag target + FREE mode geometry (list view)
 
 %hook SBIconListView
@@ -403,7 +430,19 @@ static NSArray *PageKeys(SBIconListModel *list, NSMutableArray *gapsOut) {
 		NSString *key = IconKey(ic);
 		NSArray *pos = sFree[key];
 		if (pos.count == 2) return CGPointMake([pos[0] floatValue], [pos[1] floatValue]);
-		sFree[key] = @[@(o.x), @(o.y)];
+		// A page that has not been sized yet makes stock return garbage (negative x...): never pin that.
+		CGSize sz = [self bounds].size;
+		if (sz.width < 200 || sz.height < 200) return o;
+		CGPoint pick;
+		if (sInheritPos && [ic isFolderIcon] && [NSDate timeIntervalSinceReferenceDate] < sInheritUntil) {
+			pick = CGPointMake([sInheritPos[0] floatValue], [sInheritPos[1] floatValue]); // new folder replaces the icon it was made from
+			sInheritPos = nil;
+		} else {
+			pick = FreeSpot(self, m, ic, o);
+		}
+		sFree[key] = @[@(pick.x), @(pick.y)];
+		FGLog(@"pin %@ idx %u stock (%.0f,%.0f) -> (%.0f,%.0f)", key, idx, o.x, o.y, pick.x, pick.y);
+		return pick;
 	} @catch (NSException *e) {
 		FGLogErr(@"origin threw %@: %@", e.name, e.reason);
 	}
@@ -521,14 +560,31 @@ static void ApplyLayout(SBFolder *root) {
 	BOOL savedFree = [saved[@"mode"] isEqual:@"free"]; // version 1 files are grid layouts
 	if (savedFree != sFreeMode) { FGLog(@"layout file is for the other mode - ignored"); return; }
 
-	if (sFreeMode) { // FREE: just load the per-icon positions
+	if (sFreeMode) { // FREE: load the per-icon positions of every page that still looks like the one we saved
 		NSDictionary *free = saved[@"free"];
-		if (![free isKindOfClass:[NSDictionary class]]) return;
-		for (NSString *k in free) {
-			NSArray *v = free[k];
-			if ([k isKindOfClass:[NSString class]] && [v isKindOfClass:[NSArray class]] && v.count == 2
-			    && [v[0] isKindOfClass:[NSNumber class]] && [v[1] isKindOfClass:[NSNumber class]])
-				sFree[k] = v;
+		NSArray *fp = saved[@"pages"];
+		NSArray *flists = [root lists];
+		if (![free isKindOfClass:[NSDictionary class]] || ![fp isKindOfClass:[NSArray class]]) return;
+		for (NSUInteger p = 0; p < flists.count && p < fp.count; p++) {
+			NSDictionary *sp = fp[p];
+			NSArray *savedIcons = [sp isKindOfClass:[NSDictionary class]] ? sp[@"icons"] : nil;
+			if (![savedIcons isKindOfClass:[NSArray class]]) continue;
+			// A few changes are fine (an app installed while the tweak was off), a different home
+			// screen is not (e.g. "Reset Home Screen Layout"): then the page stays stock.
+			NSMutableArray *rest = [PageKeys(flists[p], [NSMutableArray array]) mutableCopy];
+			NSUInteger missing = 0;
+			for (NSString *k in savedIcons) {
+				NSUInteger ix = [rest indexOfObject:k];
+				if (ix == NSNotFound) missing++; else [rest removeObjectAtIndex:ix];
+			}
+			if (missing + rest.count > MAX((NSUInteger)2, savedIcons.count / 4)) { FGLog(@"page %lu differs - free positions skipped", (unsigned long)p); continue; }
+			for (NSString *k in savedIcons) {
+				NSArray *v = free[k];
+				if ([k isKindOfClass:[NSString class]] && [v isKindOfClass:[NSArray class]] && v.count == 2
+				    && [v[0] isKindOfClass:[NSNumber class]] && [v[1] isKindOfClass:[NSNumber class]]
+				    && [v[0] floatValue] > -40 && [v[0] floatValue] < 340 && [v[1] floatValue] > -40 && [v[1] floatValue] < 500) // on screen
+					sFree[k] = v;
+			}
 		}
 		FGLog(@"free positions loaded: %lu", (unsigned long)sFree.count);
 		return;
@@ -652,6 +708,45 @@ static void ApplyLayout(SBFolder *root) {
 }
 %end
 
+#pragma mark - FREE mode: positions follow folders through renames and creation
+
+// A folder's key is its name, so a rename must carry the saved position over.
+%hook SBFolder
+- (void)setDisplayName:(NSString *)name {
+	NSString *oldKey = nil;
+	if (sFreeMode) {
+		@try { oldKey = [@"folder:" stringByAppendingString:[self displayName] ?: @""]; } @catch (NSException *e) {}
+	}
+	%orig;
+	if (!oldKey) return;
+	@try {
+		NSString *newKey = [@"folder:" stringByAppendingString:[self displayName] ?: @""];
+		if (![oldKey isEqualToString:newKey] && sFree[oldKey]) {
+			sFree[newKey] = sFree[oldKey];
+			[sFree removeObjectForKey:oldKey];
+			FGLog(@"folder renamed: %@ -> %@", oldKey, newKey);
+		}
+	} @catch (NSException *e) {
+		FGLogErr(@"rename threw %@: %@", e.name, e.reason);
+	}
+}
+%end
+
+// Dropping an icon on the centre of another makes a folder: it should appear where that icon was.
+%hook SBIconController
+- (id)createNewFolderFromRecipientIcon:(SBIcon *)recipient grabbedIcon:(SBIcon *)grabbed {
+	if (sFreeMode && recipient) {
+		@try {
+			NSArray *pos = sFree[IconKey(recipient)];
+			if (pos.count == 2) { sInheritPos = pos; sInheritUntil = [NSDate timeIntervalSinceReferenceDate] + 3.0; }
+		} @catch (NSException *e) {
+			FGLogErr(@"new folder threw %@: %@", e.name, e.reason);
+		}
+	}
+	return %orig;
+}
+%end
+
 #pragma mark - Gaps are never launchable
 
 %hook SBPlaceholderIcon
@@ -749,8 +844,19 @@ static BOOL ConvertLayout(BOOL toFree) {
 	return WriteLayout(toFree ? @"free" : @"grid", pages, toFree ? free : nil);
 }
 
+static BOOL SettingEnabled(void) {
+	id v = ReadSetting(@"enabled");
+	return v ? [v boolValue] : YES;
+}
+
 static void HandleSettingsChange(void) {
 	@try {
+		if (SettingEnabled() != sEnabled) { // master switch: takes effect on the next launch
+			FGLogErr(@"enabled -> %d", !sEnabled);
+			Respring();
+			return;
+		}
+		if (!sEnabled) return;
 		if ([ReadSetting(@"reset") boolValue]) { // "Reset layout": back to stock, then respring
 			WriteSetting(@"reset", @NO);
 			[[NSFileManager defaultManager] removeItemAtPath:kLayoutPath error:nil];
@@ -777,28 +883,56 @@ static void SettingsChanged(CFNotificationCenterRef c, void *o, CFStringRef n, c
 
 #pragma mark - Startup
 
+// Crash-loop guard: three launches in a row that don't survive 30 s AND a fresh SpringBoard crash
+// report => disable ourselves. (Three quick manual resprings alone are not a crash loop.)
+static BOOL CrashLoopDetected(void) {
+	NSFileManager *fm = [NSFileManager defaultManager];
+	NSTimeInterval now = [[NSDate date] timeIntervalSince1970];
+	NSMutableArray *ts = [NSMutableArray array];
+	for (NSString *l in [[NSString stringWithContentsOfFile:kBootFile encoding:NSUTF8StringEncoding error:nil] componentsSeparatedByString:@"\n"]) {
+		double t = [l doubleValue];
+		if (t > 0 && now - t < 180) [ts addObject:@(t)];
+	}
+	[ts addObject:@(now)];
+	[[ts componentsJoinedByString:@"\n"] writeToFile:kBootFile atomically:YES encoding:NSUTF8StringEncoding error:nil];
+	if (ts.count < 3) return NO;
+
+	double since = [ts[ts.count - 3] doubleValue] - 5;
+	NSString *dir = @"/var/mobile/Library/Logs/CrashReporter";
+	for (NSString *f in [fm contentsOfDirectoryAtPath:dir error:nil]) {
+		if (![f hasPrefix:@"SpringBoard"] || ![f hasSuffix:@".ips"]) continue;
+		NSDate *d = [[fm attributesOfItemAtPath:[dir stringByAppendingPathComponent:f] error:nil] fileModificationDate];
+		if ([d timeIntervalSince1970] > since) return YES;
+	}
+	return NO;
+}
+
 %ctor {
 	NSFileManager *fm = [NSFileManager defaultManager];
 	if ([fm fileExistsAtPath:kKillSwitch]) return; // kill switch: do nothing at all
 
-	// Crash-loop guard: 3 launches in a row that don't survive 30 s => disable ourselves.
-	int boots = [[NSString stringWithContentsOfFile:kBootFile encoding:NSUTF8StringEncoding error:nil] intValue];
-	if (boots >= 3) {
+	// Keep the log small.
+	NSDictionary *la = [fm attributesOfItemAtPath:kLogPath error:nil];
+	if ([la fileSize] > 64 * 1024) [fm removeItemAtPath:kLogPath error:nil];
+
+	if (CrashLoopDetected()) {
 		[@"auto-disabled after repeated crashes\n" writeToFile:kKillSwitch atomically:YES encoding:NSUTF8StringEncoding error:nil];
 		[fm removeItemAtPath:kBootFile error:nil];
-		FGLogErr(@"CRASH LOOP DETECTED - FreeGrid disabled itself");
+		FGLogErr(@"CRASH LOOP DETECTED - FreeGrid disabled itself (reinstall or delete %@ to re-enable)", kKillSwitch);
 		return;
 	}
-	[[NSString stringWithFormat:@"%d", boots + 1] writeToFile:kBootFile atomically:YES encoding:NSUTF8StringEncoding error:nil];
 	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 30 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
 		[[NSFileManager defaultManager] removeItemAtPath:kBootFile error:nil];
 	});
 
 	sDebug = [fm fileExistsAtPath:kDebugFile];
-	sFree = [NSMutableDictionary dictionary];
-	sFreeMode = [ReadSetting(@"mode") isEqual:@"free"];
+	sEnabled = SettingEnabled();
 	CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, SettingsChanged,
 		(__bridge CFStringRef)kNotifyName, NULL, CFNotificationSuspensionBehaviorDeliverImmediately);
-	FGLogErr(@"--- FreeGrid loaded (step 4: grid + free modes, mode=%@, debug=%d) ---", sFreeMode ? @"free" : @"grid", sDebug);
+	if (!sEnabled) { FGLogErr(@"FreeGrid is switched off in Settings"); return; } // observer stays so the switch can turn it on
+
+	sFree = [NSMutableDictionary dictionary];
+	sFreeMode = [ReadSetting(@"mode") isEqual:@"free"];
+	FGLogErr(@"--- FreeGrid 1.0 loaded (mode=%@, debug=%d) ---", sFreeMode ? @"free" : @"grid", sDebug);
 	%init;
 }

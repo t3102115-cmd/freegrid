@@ -8,11 +8,33 @@
 		<string>PSLinkCell</string>
 		<key>label</key>
 		<string>FreeGrid</string>
+		<key>icon</key>
+		<string>FreeGrid.png</string>
 	</dict>
 	<key>title</key>
 	<string>FreeGrid</string>
 	<key>items</key>
 	<array>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>footerText</key>
+			<string>Off restores the stock home screen behavior (your saved layout is kept for when you turn it back on). Changing this resprings.</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>label</key>
+			<string>Enabled</string>
+			<key>defaults</key>
+			<string>com.example.freegrid.settings</string>
+			<key>key</key>
+			<string>enabled</string>
+			<key>default</key>
+			<true/>
+			<key>PostNotification</key>
+			<string>com.example.freegrid/settings</string>
+		</dict>
 		<dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
@@ -68,6 +90,14 @@
 			<false/>
 			<key>PostNotification</key>
 			<string>com.example.freegrid/settings</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>About</string>
+			<key>footerText</key>
+			<string>FreeGrid 1.0 for iOS 9. If the home screen ever misbehaves: create /var/mobile/.freegrid_disable (SSH or Filza) and respring to switch the tweak off completely.</string>
 		</dict>
 	</array>
 </dict>

@@ -11,9 +11,9 @@ Two modes, switchable in **Settings > FreeGrid**:
 | **Free (anywhere)** | Icons go exactly where you drop them, no grid: overlap, circles, whatever. Dropping an icon on the *centre* of another icon still creates a folder. |
 
 Folders and the dock behave like stock. Layout survives respring, reboot and re-jailbreak.
-**Reset layout** (Settings > FreeGrid) restores the stock layout.
+**Enabled** (Settings > FreeGrid) switches the tweak off without losing your saved layout. **Reset layout** restores the stock layout.
 
-Install the prebuilt package: `packages/com.example.freegrid_0.1.0_iphoneos-arm.deb` (needs MobileSubstrate and PreferenceLoader).
+Install the prebuilt package: `packages/com.example.freegrid_1.0.0_iphoneos-arm.deb` (needs MobileSubstrate and PreferenceLoader; iOS 9.x only).
 
 ## How it works
 
@@ -33,7 +33,7 @@ Install the prebuilt package: `packages/com.example.freegrid_0.1.0_iphoneos-arm.
 
 * **Kill switch:** create `/var/mobile/.freegrid_disable` (e.g. `ssh iphone-mobile 'touch /var/mobile/.freegrid_disable'`)
   and respring: the tweak does nothing at all. Delete the file to re-enable.
-* **Crash-loop guard:** three SpringBoard launches in a row that don't survive 30 s create that file automatically.
+* **Crash-loop guard:** three SpringBoard launches in a row that don't survive 30 s *and* a fresh SpringBoard crash report create that file automatically. Reinstalling the package clears an automatic disable (a manual one stays).
 * All hook logic is wrapped in `@try/@catch` and falls back to stock behaviour; errors go to
   `/var/mobile/Library/Logs/freegrid.log`. `touch /var/mobile/.freegrid_debug` + respring turns on verbose tracing.
 * `IconState.plist` is only ever written by SpringBoard itself.
@@ -42,8 +42,8 @@ Install the prebuilt package: `packages/com.example.freegrid_0.1.0_iphoneos-arm.
 ## Known limits
 
 * Max 16 icons per page in both modes (stock page capacity).
-* Free mode: a *new folder* created by dropping on an icon takes that slot's grid position, not the icon's free position;
-  newly installed apps appear at their grid slot.
+* Free mode: a folder is identified by its name (renames are tracked); two folders with the same name share one position.
+* Free mode: an icon dragged out of an *open folder* onto a page appears at its grid slot (or the first free spot), not under the finger.
 * Free mode never wraps/aligns; switching back to Grid snaps each icon to the nearest free slot (reading order).
 * iPhone portrait only (iPhone 4S home screen doesn't rotate).
 
@@ -79,8 +79,8 @@ Host iphone
 
 ```bash
 ssh-keygen -t rsa -b 3072 -f ~/.ssh/iphone_rsa -N ""    # and ssh-copy-id -i ~/.ssh/iphone_rsa.pub iphone
-scp packages/com.example.freegrid_0.1.0_iphoneos-arm.deb iphone:/var/root/
-ssh iphone 'dpkg -i /var/root/com.example.freegrid_0.1.0_iphoneos-arm.deb && killall -9 SpringBoard'
+scp packages/com.example.freegrid_1.0.0_iphoneos-arm.deb iphone:/var/root/
+ssh iphone 'dpkg -i /var/root/com.example.freegrid_1.0.0_iphoneos-arm.deb && killall -9 SpringBoard'
 ```
 
 Before the first test, back up `/var/mobile/Library/SpringBoard/IconState.plist` (a copy of the one used during

@@ -1,0 +1,4 @@
+#!/bin/sh
+# Removing the tweak keeps IconState.plist (SpringBoard's own, always a normal dense layout).
+rm -f /var/mobile/Library/Preferences/com.example.freegrid.boot
+exit 0
