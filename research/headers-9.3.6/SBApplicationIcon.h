@@ -1,0 +1,30 @@
+@interface SBApplicationIcon : 
+  ivar _cachedSquareHomeScreenContentsImage  @"UIImage"
+  ivar _application  @"SBApplication"
+  ivar _uninstallStringsLocalizationBlock  @?
+- initWithApplication:  @12@0:4@8
+- copyWithZone:  @12@0:4^{_NSZone=}8
+- __loadIconImageForDataSource:format:  @16@0:4@8i12
+- _blockForGeneratingIconImageInBackgroundWithFormat:complete:  @?16@0:4i8@?12
+- asynchronouslyRequestIconImageForFormat:completionHandler:  v16@0:4i8@?12
+- generateIconImage:  @12@0:4i8
+- __loadUnmaskedIconImageForFormat:  @12@0:4i8
+- getUnmaskedIconImage:  @12@0:4i8
+- tags  @8@0:4
+- automationID  @8@0:4
+- setBadge:  v12@0:4@8
+- folderTitleOptions  @8@0:4
+- folderFallbackTitle  @8@0:4
+- _localizedUninstallStringForKey:  @12@0:4@8
+- uninstallAlertTitle  @8@0:4
+- uninstallAlertTitleNotAllowed  @8@0:4
+- uninstallAlertBody  @8@0:4
+- uninstallAlertBodyNotAllowed  @8@0:4
+- uninstallAlertBodyForAppWithDocumentsInCloud  @8@0:4
+- uninstallAlertBodyForAppWithDocumentUpdatesPending  @8@0:4
+- uninstallAlertConfirmTitle  @8@0:4
+- uninstallAlertCancelTitle  @8@0:4
+- isApplicationIcon  c8@0:4
+- application  @8@0:4
+- .cxx_destruct  v8@0:4
+@end

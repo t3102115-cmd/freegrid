@@ -1,0 +1,37 @@
+@interface SBIconListPageControl : UIPageControl
+  ivar _delegate  @"<SBIconListPageControlDelegate>"
+  ivar _hasSetLegibility  c
+  ivar _shouldShowSearchIndicator  c
+  ivar _cachedDefaultHeight  f
+  ivar _pageIndicatorImageSets  @"SBIconPageIndicatorImageSetResult"
+  ivar _searchIndicatorImageSets  @"SBIconPageIndicatorImageSetResult"
+  ivar _legibilityEnabled  c
+  ivar _imageSetCache  @"SBIconPageIndicatorImageSetCache"
+  @property shouldShowSearchIndicator  Tc,N,V_shouldShowSearchIndicator
+  @property legibilityEnabled  Tc,N,V_legibilityEnabled
+  @property delegate  T@"<SBIconListPageControlDelegate>",W,N,V_delegate
+  @property imageSetCache  T@"SBIconPageIndicatorImageSetCache",&,N,V_imageSetCache
+- initWithFrame:  @24@0:4{CGRect={CGPoint=ff}{CGSize=ff}}8
+- dealloc  v8@0:4
+- defaultHeight  f8@0:4
+- touchesBegan:withEvent:  v16@0:4@8@12
+- touchesMoved:withEvent:  v16@0:4@8@12
+- touchesEnded:withEvent:  v16@0:4@8@12
+- setFrame:  v24@0:4{CGRect={CGPoint=ff}{CGSize=ff}}8
+- setLegibilitySettings:  v12@0:4@8
+- _setIndicatorImage:toEnabled:index:  v20@0:4@8c12i16
+- _searchIndicatorImage:  @12@0:4c8
+- _iconListIndicatorImage:  @12@0:4c8
+- _indicatorViewEnabled:index:  @16@0:4c8i12
+- _invalidateIndicators  v8@0:4
+- _transitionIndicator:toEnabled:index:  v20@0:4@8c12i16
+- .cxx_destruct  v8@0:4
+- delegate  @8@0:4
+- setDelegate:  v12@0:4@8
+- imageSetCache  @8@0:4
+- setImageSetCache:  v12@0:4@8
+- shouldShowSearchIndicator  c8@0:4
+- setShouldShowSearchIndicator:  v12@0:4c8
+- legibilityEnabled  c8@0:4
+- setLegibilityEnabled:  v12@0:4c8
+@end

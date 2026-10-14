@@ -1,0 +1,20 @@
+@interface SBRootFolder : 
+  ivar _delegate  @"<SBRootFolderDelegate>"
+  @property delegate  T@"<SBRootFolderDelegate>",W,N,V_delegate
+  @property supportsDock  Tc,R,N
+  @property dock  T@"SBIconListModel",&,N
++ isRootFolderClass  c8@0:4
+- canRemoveIcons  c8@0:4
+- canEditDisplayName  c8@0:4
+- _listsForCompaction  @8@0:4
+- placeIconsOnFirstPage:  v12@0:4@8
+- supportsDock  c8@0:4
+- dock  @8@0:4
+- _setDock:  v12@0:4@8
+- setDelegate:  v12@0:4@8
+- nodeIdentifier  @8@0:4
+- nodeDescriptionWithPrefix:  @12@0:4@8
+- isRootFolder  c8@0:4
+- .cxx_destruct  v8@0:4
+- delegate  @8@0:4
+@end

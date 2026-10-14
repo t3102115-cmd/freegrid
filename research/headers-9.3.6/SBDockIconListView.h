@@ -1,0 +1,20 @@
+@interface SBDockIconListView : 
++ defaultHeight  f8@0:4
++ iconColumnsOrRows  I8@0:4
++ iconColumnsForInterfaceOrientation:  I12@0:4i8
++ iconRowsForInterfaceOrientation:  I12@0:4i8
+- initWithModel:orientation:viewMap:  @20@0:4@8i12@16
+- iconLocation  i8@0:4
+- _shouldAnimatePropertyWithKey:  c12@0:4@8
+- iconsInRowForSpacingCalculation  I8@0:4
+- iconsInColumnForSpacingCalculation  I8@0:4
+- topIconInset  f8@0:4
+- bottomIconInset  f8@0:4
+- sideIconInset  f8@0:4
+- iconAtPoint:index:proposedOrder:grabbedIcon:  @28@0:4{CGPoint=ff}8^I16^i20@24
+- rowAtPoint:  I16@0:4{CGPoint=ff}8
+- _additionalHorizontalInsetToCenterIcons  f8@0:4
+- _additionalVerticalInsetToCenterIcons  f8@0:4
+- originForIconAtCoordinate:  {CGPoint=ff}16@0:4{SBIconCoordinate=ii}8
+- columnAtPoint:  I16@0:4{CGPoint=ff}8
+@end

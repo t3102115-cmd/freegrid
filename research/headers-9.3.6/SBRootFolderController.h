@@ -1,0 +1,55 @@
+@interface SBRootFolderController : 
+  ivar _managesStatusBarWidth  c
+  ivar _dockAnimationWindow  @"UIWindow"
+  @property folder  T@"SBRootFolder",&,D,N
+  @property contentView  T@"SBRootFolderView",R,D,N
+  @property dockEdge  TI,N
+  @property dockAnimationWindow  T@"UIWindow",&,N,V_dockAnimationWindow
+  @property managesStatusBarWidth  Tc,N,V_managesStatusBarWidth
+  @property hash  TI,R
+  @property superclass  T#,R
+  @property description  T@"NSString",R,C
+  @property debugDescription  T@"NSString",R,C
++ listViewClass  #8@0:4
+- initWithFolder:orientation:viewMap:  @20@0:4@8i12@16
+- _contentViewClass  #8@0:4
+- _depth  I8@0:4
+- setFolder:  v12@0:4@8
+- folderControllers  @8@0:4
+- setCurrentPageIndex:animated:  c16@0:4i8c12
+- setIdleText:  v12@0:4@8
+- isDisplayingIcon:  c12@0:4@8
+- dockListView  @8@0:4
+- setDockOffscreenFraction:  v12@0:4f8
+- setDockVerticalStretch:  v12@0:4f8
+- dockEdge  I8@0:4
+- setDockEdge:  v12@0:4I8
+- _autoscrollExclusionRegion  {CGRect={CGPoint=ff}{CGSize=ff}}8@0:4
+- _listIndexIsVisible:  c12@0:4I8
+- pushFolder:animated:completion:  c20@0:4@8c12@?16
+- popFolderAnimated:completion:  c16@0:4c8@?12
+- addAdditionalInnerFolderAnimations  v8@0:4
+- prepareToOpen  v8@0:4
+- prepareToClose  v8@0:4
+- _isDockSwitchedForOrientation:  c12@0:4i8
+- _shouldSlideDockOutDuringRotationFromOrientation:toOrientation:  c16@0:4i8i12
+- _shouldUseDockAnimationWindowForRotationToInterfaceOrientation:duration:  c20@0:4i8d12
+- _dockEdgeForInterfaceOrientation:  I12@0:4i8
+- _dockLayoutReversedForInterfaceOrientation:  c12@0:4i8
+- _configureDockViewForOrientationDuringAnimation:  v12@0:4i8
+- _configureDockViewForOrientationWithoutAnimation:  v12@0:4i8
+- _configureViewForOrientationWithoutAnimation:  v12@0:4i8
+- _configureAppStatusBarInsetsAnimated:  v12@0:4c8
+- _configureAppStatusBarInsets  v8@0:4
+- _configureAppStatusBarInsetsForOrientation:  v12@0:4i8
+- statusBarInsetsForOrientation:  {UIEdgeInsets=ffff}12@0:4i8
+- willRotateToInterfaceOrientation:duration:  v20@0:4i8d12
+- willAnimateRotationToInterfaceOrientation:duration:  v20@0:4i8d12
+- didRotateFromInterfaceOrientation:  v12@0:4i8
+- rootFolder:shouldAllowBadgingForIcon:  c16@0:4@8@12
+- .cxx_destruct  v8@0:4
+- dockAnimationWindow  @8@0:4
+- setDockAnimationWindow:  v12@0:4@8
+- managesStatusBarWidth  c8@0:4
+- setManagesStatusBarWidth:  v12@0:4c8
+@end

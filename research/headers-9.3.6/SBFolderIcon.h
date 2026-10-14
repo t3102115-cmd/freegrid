@@ -1,0 +1,61 @@
+@interface SBFolderIcon : 
+  ivar _cachedMiniGrids  @"NSMutableArray"
+  ivar _folder  @"SBFolder"
+  ivar _nodeObservers  @"NSHashTable"
+  ivar _finishedDownloadIdentifiers  @"NSMutableSet"
+  ivar _progressState  i
+  ivar _progressPercent  f
+  @property hash  TI,R
+  @property superclass  T#,R
+  @property description  T@"NSString",R,C
+  @property debugDescription  T@"NSString",R,C
++ _maxIconsInGridImage  I8@0:4
++ _iconGridImageClass  #8@0:4
+- iconImageViewClassForLocation:  #12@0:4i8
+- initWithFolder:  @12@0:4@8
+- dealloc  v8@0:4
+- rootFolder  @8@0:4
+- generateIconImage:  @12@0:4i8
+- getGenericIconImage:  @12@0:4i8
+- displayNameForLocation:  @12@0:4i8
+- localeChanged  v8@0:4
+- description  @8@0:4
+- launchFromLocation:context:  v16@0:4i8@12
+- updateLabel  v8@0:4
+- _updateBadgeValue  v8@0:4
+- _appPlaceholdersDidChange:  v12@0:4@8
+- _updateProgress  v8@0:4
+- progressState  i8@0:4
+- progressIsPaused  c8@0:4
+- shouldAnimateProgress  c8@0:4
+- progressPercent  f8@0:4
+- _adjustForIconsAdded:removed:  v16@0:4@8@12
+- noteContainedIconsAdded:removed:  v16@0:4@8@12
+- noteContainedIcon:replacedIcon:  v16@0:4@8@12
+- _containedIconImageChanged:  v12@0:4@8
+- rootFolderDelegateDidChange:  v12@0:4@8
+- listIndexForContainedIcon:  I12@0:4@8
+- gridCellIndexForIconIndex:  I12@0:4I8
+- _miniIconGridForPage:  @12@0:4i8
+- purgeCachedImages  v8@0:4
+- gridImages  @8@0:4
+- miniGridCellImageForIcon:  @12@0:4@8
+- iconImageDidUpdate:  v12@0:4@8
+- iconAccessoriesDidUpdate:  v12@0:4@8
+- nodeIdentifier  @8@0:4
+- containsNodeIdentifier:  c12@0:4@8
+- containedNodeIdentifiers  @8@0:4
+- indexPathsForContainedNodeIdentifier:prefixPath:  @16@0:4@8@12
+- nodesAlongIndexPath:consumedIndexes:  @16@0:4@8I12
+- addNodeObserver:  v12@0:4@8
+- removeNodeObserver:  v12@0:4@8
+- nodeDescriptionWithPrefix:  @12@0:4@8
+- node:didAddContainedNodeIdentifiers:  v16@0:4@8@12
+- node:didRemoveContainedNodeIdentifiers:  v16@0:4@8@12
+- folder:didAddList:  v16@0:4@8@12
+- folder:didRemoveLists:atIndexes:  v20@0:4@8@12@16
+- isFolderIcon  c8@0:4
+- folder  @8@0:4
+- hasFolderIconView  c8@0:4
+- .cxx_destruct  v8@0:4
+@end

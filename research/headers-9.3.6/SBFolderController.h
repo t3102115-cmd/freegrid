@@ -1,0 +1,194 @@
+@interface SBFolderController : NSObject
+  ivar _viewMap  @"SBIconViewMap"
+  ivar _contentView  @"SBFolderView"
+  ivar _didAutoScroll  c
+  ivar _autoScrollTimer  @"NSTimer"
+  ivar _dragPausePoint  {CGPoint="x"f"y"f}
+  ivar _dragPauseTimer  @"NSTimer"
+  ivar _closeFolderTimer  @"NSTimer"
+  ivar _grabbedIconHasEverEnteredFolderView  c
+  ivar _dropDestinationPageIndex  i
+  ivar _editingContextsByFolder  @"NSMapTable"
+  ivar _iconAnimator  @"SBIconAnimator"
+  ivar _isOpen  c
+  ivar _isEditing  c
+  ivar _isAnimating  c
+  ivar _active  c
+  ivar _rotating  c
+  ivar _delegate  @"<SBFolderControllerDelegate>"
+  ivar _folder  @"SBFolder"
+  ivar _orientation  i
+  ivar _legibilitySettings  @"_UILegibilitySettings"
+  ivar _outerFolderController  @"SBFolderController"
+  ivar _innerFolderController  @"SBFolderController"
+  ivar _animationContext  @"SBFolderControllerAnimationContext"
+  ivar _postScrollingAction  @?
+  ivar _grabbedIcon  @"SBIcon"
+  ivar _lastContext  @"SBFolderContext"
+  @property delegate  T@"<SBFolderControllerDelegate>",W,N,V_delegate
+  @property folder  T@"SBFolder",&,N,V_folder
+  @property orientation  Ti,N,V_orientation
+  @property viewMap  T@"SBIconViewMap",R,N,V_viewMap
+  @property currentPageIndex  Ti,R,N
+  @property open  Tc,N,GisOpen,V_isOpen
+  @property editing  Tc,R,N,GisEditing,V_isEditing
+  @property scrolling  Tc,R,N,GisScrolling
+  @property animating  Tc,N,GisAnimating,V_isAnimating
+  @property legibilitySettings  T@"_UILegibilitySettings",&,N,V_legibilitySettings
+  @property contentView  T@"SBFolderView",R,N,V_contentView
+  @property iconListViews  T@"NSArray",R,C,N
+  @property iconListViewCount  TI,R,N
+  @property dropDestinationPageIndex  Ti,N,V_dropDestinationPageIndex
+  @property outerFolderController  T@"SBFolderController",W,N,V_outerFolderController
+  @property innerFolderController  T@"SBFolderController",&,N,V_innerFolderController
+  @property animationContext  T@"SBFolderControllerAnimationContext",&,N,V_animationContext
+  @property postScrollingAction  T@?,C,N,V_postScrollingAction
+  @property _autoscrollExclusionRegion  T{CGRect={CGPoint=ff}{CGSize=ff}},R,N
+  @property active  Tc,N,GisActive,V_active
+  @property rotating  Tc,N,GisRotating,V_rotating
+  @property grabbedIcon  T@"SBIcon",&,N,V_grabbedIcon
+  @property lastContext  T@"SBFolderContext",&,N,V_lastContext
+  @property hash  TI,R
+  @property superclass  T#,R
+  @property description  T@"NSString",R,C
+  @property debugDescription  T@"NSString",R,C
++ listViewClass  #8@0:4
++ maxFolderDepth  I8@0:4
++ wallpaperScaleForDepth:  f12@0:4I8
+- initWithFolder:orientation:viewMap:  @20@0:4@8i12@16
+- initWithFolder:orientation:viewMap:context:  @24@0:4@8i12@16@20
+- dealloc  v8@0:4
+- _invalidate  v8@0:4
+- _contentViewClass  #8@0:4
+- _iconPageIndicatorImageSetCache  @8@0:4
+- setFolder:  v12@0:4@8
+- isScrolling  c8@0:4
+- currentPageIndex  i8@0:4
+- setOpen:  v12@0:4c8
+- setEditing:animated:  v16@0:4c8c12
+- setCurrentPageIndex:animated:  c16@0:4i8c12
+- setCurrentPageIndexToListContainingIcon:animated:  c16@0:4@8c12
+- setInnerFolderController:  v12@0:4@8
+- deepestFolderController  @8@0:4
+- folderControllerForFolder:  @12@0:4@8
+- _createContext  @8@0:4
+- _restoreFromContext:  c12@0:4@8
+- iconListViews  @8@0:4
+- iconListViewCount  I8@0:4
+- currentIconListView  @8@0:4
+- doesPageContainIconListView:  c12@0:4i8
+- iconListViewAtIndex:  @12@0:4I8
+- iconListViewForTouch:  @12@0:4@8
+- iconListViewContainingIcon:  @12@0:4@8
+- isDisplayingIcon:  c12@0:4@8
+- hasDock  c8@0:4
+- dockListView  @8@0:4
+- setDockOffscreenFraction:  v12@0:4f8
+- setDockVerticalStretch:  v12@0:4f8
+- willAnimateWithSettings:  v12@0:4@8
+- didAnimate  v8@0:4
+- fadeContentForMagnificationFraction:  v12@0:4f8
+- fadeContentForMinificationFraction:  v12@0:4f8
+- _updateAssociatedControllerStateAnimated:  v12@0:4c8
+- prepareToTearDown  v8@0:4
+- _resetIconLists  v8@0:4
+- layoutIconLists:domino:forceRelayout:  v24@0:4d8c16c20
+- addEmptyListView  @8@0:4
+- _addEmptyListForce:  @12@0:4c8
+- _compactFolder  v8@0:4
+- _indexOfIconListForIcon:  I12@0:4@8
+- _allowUserInteraction  c8@0:4
+- _cancelAllInteractionTimers  v8@0:4
+- _cancelCloseFolderTimer  v8@0:4
+- _closeFolderTimerFired  v8@0:4
+- _setCloseFolderTimerIfNecessary  v8@0:4
+- _updateCloseFolderForTouch:  v12@0:4@8
+- _updateDropDestinationForTouch:  v12@0:4@8
+- _cancelDragPauseTimer  v8@0:4
+- _resetDragPauseTimerForPoint:inIconListView:  v20@0:4{CGPoint=ff}8@16
+- _canDropIconInListView:  c12@0:4@8
+- _dragPauseTimerFired:  v12@0:4@8
+- _updateDragPauseForTouch:  v12@0:4@8
+- _scrollLeft:  v12@0:4@8
+- _scrollRight:  v12@0:4@8
+- _doAutoScrollByPageCount:  v12@0:4i8
+- _cancelAutoScroll  v8@0:4
+- _autoscrollExclusionRegion  {CGRect={CGPoint=ff}{CGSize=ff}}8@0:4
+- _updateAutoScrollForTouch:  v12@0:4@8
+- noteUserIsInteractingWithIcons  v8@0:4
+- noteGrabbedIconDidChange:  v12@0:4@8
+- noteGrabbedIcon:locationDidChangeWithTouch:  v16@0:4@8@12
+- unscatterAnimated:afterDelay:withCompletion:  v24@0:4c8d12@?20
+- _clearIconAnimator  v8@0:4
+- _newAnimatorForZoomUp:  @12@0:4c8
+- _depth  I8@0:4
+- _listIndexIsVisible:  c12@0:4I8
+- _iconAppearsOnCurrentPage:  c12@0:4@8
+- _setInnerFolderOpen:animated:completion:  v20@0:4c8c12@?16
+- prepareToOpen  v8@0:4
+- prepareToClose  v8@0:4
+- _animateFloatyFolderOpen:settings:completion:  v20@0:4c8@12@?16
+- pushFolder:animated:completion:  c20@0:4@8c12@?16
+- popFolderAnimated:completion:  c16@0:4c8@?12
+- popToIndexPath:  v12@0:4@8
+- currentIndexPath  @8@0:4
+- addAdditionalInnerFolderAnimations  v8@0:4
+- prepareForZoomAnimation  v8@0:4
+- cleanUpAfterZoomAnimation  v8@0:4
+- prepareToLaunchTappedIcon:completionHandler:  v16@0:4@8@?12
+- statusBarInsetsForOrientation:  {UIEdgeInsets=ffff}12@0:4i8
+- willRotateToInterfaceOrientation:duration:  v20@0:4i8d12
+- willAnimateRotationToInterfaceOrientation:duration:  v20@0:4i8d12
+- didRotateFromInterfaceOrientation:  v12@0:4i8
+- controllerClassForFolder:  #12@0:4@8
+- folderController:draggedIconDidPauseAtLocation:inListView:  c24@0:4@8{CGPoint=ff}12@20
+- folderController:draggedIconDidMoveFromListView:toListView:  c20@0:4@8@12@16
+- folderController:draggedIconMightDropFromListView:  c16@0:4@8@12
+- folderController:draggedIconShouldDropFromListView:  v16@0:4@8@12
+- folderControllerShouldClose:  v12@0:4@8
+- folderControllerShouldBeginEditing:  v12@0:4@8
+- folderControllerDidEndScrolling:  v12@0:4@8
+- iconListViewClassForFolderView:  #12@0:4@8
+- folderView:currentPageIndexDidChange:  v16@0:4@8i12
+- folderViewWillBeginScrolling:  v12@0:4@8
+- folderViewDidEndScrolling:  v12@0:4@8
+- folderViewShouldClose:  v12@0:4@8
+- folderViewShouldBeginEditing:  v12@0:4@8
+- _noteFolderListsDidChange  v8@0:4
+- folder:didAddList:  v16@0:4@8@12
+- folder:didRemoveLists:atIndexes:  v20@0:4@8@12@16
+- setLegibilitySettings:  v12@0:4@8
+- folderViewDidReceiveCancelReachabilityAction:  v12@0:4@8
+- folderControllerDidReceiveCancelReachabilityAction:  v12@0:4@8
+- handleReachabilityActivated:animated:completion:  v20@0:4c8c12@?16
+- .cxx_destruct  v8@0:4
+- isOpen  c8@0:4
+- isEditing  c8@0:4
+- isAnimating  c8@0:4
+- setAnimating:  v12@0:4c8
+- dropDestinationPageIndex  i8@0:4
+- setDropDestinationPageIndex:  v12@0:4i8
+- delegate  @8@0:4
+- setDelegate:  v12@0:4@8
+- folder  @8@0:4
+- orientation  i8@0:4
+- setOrientation:  v12@0:4i8
+- viewMap  @8@0:4
+- legibilitySettings  @8@0:4
+- contentView  @8@0:4
+- outerFolderController  @8@0:4
+- setOuterFolderController:  v12@0:4@8
+- innerFolderController  @8@0:4
+- animationContext  @8@0:4
+- setAnimationContext:  v12@0:4@8
+- postScrollingAction  @?8@0:4
+- setPostScrollingAction:  v12@0:4@?8
+- isActive  c8@0:4
+- setActive:  v12@0:4c8
+- isRotating  c8@0:4
+- setRotating:  v12@0:4c8
+- grabbedIcon  @8@0:4
+- setGrabbedIcon:  v12@0:4@8
+- lastContext  @8@0:4
+- setLastContext:  v12@0:4@8
+@end

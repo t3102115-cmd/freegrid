@@ -1,0 +1,52 @@
+@interface SBIconViewMap : 
+  ivar _screen  @"UIScreen"
+  ivar _model  @"SBIconModel"
+  ivar _iconViewsForIcons  @"NSMapTable"
+  ivar _delegate  @"<SBIconViewMapDelegate>"
+  ivar _viewDelegate  @"<SBIconViewDelegate>"
+  ivar _labelsForIcons  @"NSMapTable"
+  ivar _lightLegibilityImagesForIcons  @"NSMapTable"
+  ivar _darkLegibilityImagesForIcons  @"NSMapTable"
+  ivar _accessoryImagesForIcons  @"NSMapTable"
+  ivar _legibilitySettings  @"_UILegibilitySettings"
+  @property screen  T@"UIScreen",R,N,V_screen
+  @property iconModel  T@"SBIconModel",R,N,V_model
+  @property legibilitySettings  T@"_UILegibilitySettings",&,N,V_legibilitySettings
+  @property hash  TI,R
+  @property superclass  T#,R
+  @property description  T@"NSString",R,C
+  @property debugDescription  T@"NSString",R,C
+- initWithIconModel:screen:delegate:viewDelegate:  @24@0:4@8@12@16@20
+- dealloc  v8@0:4
+- invalidate  v8@0:4
+- mappedIconViewForIcon:  @12@0:4@8
+- newViewOfClass:  @12@0:4#8
+- _iconViewForIcon:  @12@0:4@8
+- iconViewForIcon:  @12@0:4@8
+- tryToReplaceIcon:withIcon:  v16@0:4@8@12
+- _addIconView:forIcon:  v16@0:4@8@12
+- purgeIconFromMap:  v12@0:4@8
+- _recycleIconView:  v12@0:4@8
+- recycleViewForIcon:  v12@0:4@8
+- extraIconViewForIcon:  @12@0:4@8
+- recycleIconView:  v12@0:4@8
+- recycleAndPurgeAll  v8@0:4
+- purgeRecycledIconViewsForClass:  v12@0:4#8
+- setLegibilitySettings:  v12@0:4@8
+- _cacheImagesForIcon:  v12@0:4@8
+- _cacheLabelImagesForIcon:location:  v16@0:4@8i12
+- _cacheAccessoryImagesForIcon:location:  v16@0:4@8^i12
+- _observeIconAndCacheIfNecessary:  v12@0:4@8
+- _modelRemovedIcon:  v12@0:4@8
+- _modelReloadedIcons  v8@0:4
+- _modelWillReloadState  v8@0:4
+- _modelReloadedState  v8@0:4
+- iconAccessoriesDidUpdate:  v12@0:4@8
+- node:didAddContainedNodeIdentifiers:  v16@0:4@8@12
+- node:didRemoveContainedNodeIdentifiers:  v16@0:4@8@12
+- iconViewDidChangeLocation:  v12@0:4@8
+- .cxx_destruct  v8@0:4
+- iconModel  @8@0:4
+- legibilitySettings  @8@0:4
+- screen  @8@0:4
+@end

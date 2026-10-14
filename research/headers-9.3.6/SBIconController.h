@@ -1,0 +1,294 @@
+@interface SBIconController : UIViewController
+  ivar _visibleTags  @"NSSet"
+  ivar _hiddenTags  @"NSSet"
+  ivar _iconModel  @"SBIconModel"
+  ivar _needsRelayout  c
+  ivar _sendITunesNotification  c
+  ivar _bbObserver  @"BBObserver"
+  ivar _displayIDsWithBadgingEnabled  @"NSMutableSet"
+  ivar _rootFolderController  @"SBRootFolderController"
+  ivar _closingFolder  @"SBFolder"
+  ivar _folderToOpenWhenScrollingEnds  @"SBFolder"
+  ivar _rotating  c
+  ivar _launchingIcon  @"SBIcon"
+  ivar _highlightedIcon  @"SBIcon"
+  ivar _iconToReveal  @"SBLeafIcon"
+  ivar _grabbedIcon  @"SBIcon"
+  ivar _recipientIcon  @"SBIcon"
+  ivar _droppedIconsAnimatingIntoPlace  @"NSMutableArray"
+  ivar _droppedIconsInToOrOutOfFolder  @"NSMutableArray"
+  ivar _numberOfDroppedIconsAnimatingIntoOrOutOfFolder  I
+  ivar _lastTouchedIcon  @"SBIcon"
+  ivar _isEditing  c
+  ivar _animatingFolder  c
+  ivar _grabbedIconIsDraggedOutOfFolderView  c
+  ivar _grabbedIconSourceFolder  @"SBFolder"
+  ivar _allowsUninstall  c
+  ivar _iconAlpha  f
+  ivar _oldScrollOffset  f
+  ivar _lastTouch  @"UITouch"
+  ivar _folderSpringloadTimer  @"NSTimer"
+  ivar _keyboardIsRotating  c
+  ivar _isAnimatingFolderCreation  c
+  ivar _isAnimatingForUnscatter  c
+  ivar _isAnimatingSignficantly  c
+  ivar _maxIconViewsInHierarchy  I
+  ivar _iconColorSettings  @"SBIconColorSettings"
+  ivar _reachabilityModeActive  c
+  ivar _showingSearch  c
+  ivar _legibilitySettings  @"_UILegibilitySettings"
+  ivar _indexPathToResetTo  @"NSIndexPath"
+  ivar _performedInitialLayout  c
+  ivar _presentedShortcutMenu  @"SBApplicationShortcutMenu"
+  ivar _skipCancelTouchesAfterShortcutMenuDismiss  c
+  ivar _homescreenIconViewMap  @"SBIconViewMap"
+  ivar _iconVisibilityService  @"SBIconVisibilityService"
+  ivar _previousIconLocationTracker  @"SBIconPreviousLocationTracker"
+  ivar _hasRestrictedEnforcedLayout  c
+  @property homescreenIconViewMap  T@"SBIconViewMap",R,N
+  @property legibilitySettings  T@"_UILegibilitySettings",&,N,V_legibilitySettings
+  @property presentedShortcutMenu  T@"SBApplicationShortcutMenu",&,N,V_presentedShortcutMenu
+  @property hasRestrictedEnforcedLayout  Tc,N,V_hasRestrictedEnforcedLayout
+  @property hash  TI,R
+  @property superclass  T#,R
+  @property description  T@"NSString",R,C
+  @property debugDescription  T@"NSString",R,C
++ sharedInstance  @8@0:4
+- getListView:folder:relativePath:forIndexPath:createIfNecessary:  v28@0:4^@8^@12^@16@20c24
+- iconListViewAtIndex:inFolder:createIfNecessary:  @20@0:4I8@12c16
+- _noteFolderAnimationStateDidChange  v8@0:4
+- _setHasAnimatingFolder:  v12@0:4c8
+- _setFolderToOpenAfterScrolling:  v12@0:4@8
+- _setAnimatingFolderCreation:  v12@0:4c8
+- hasAnimatingFolder  c8@0:4
+- hasOpenFolder  c8@0:4
+- openFolder  @8@0:4
+- openFolder:animated:  v16@0:4@8c12
+- closeFolderAnimated:withCompletion:  v16@0:4c8@?12
+- closeFolderAnimated:  v12@0:4c8
+- _closeFolderController:animated:withCompletion:  v20@0:4@8c12@?16
+- createNewFolderFromRecipientIcon:grabbedIcon:  @16@0:4@8@12
+- _dropIconIntoOpenFolder:withInsertionPath:  v16@0:4@8@12
+- _dropIconOutOfClosingFolder:withInsertionPath:  v16@0:4@8@12
+- _moveDroppedIconsToLocation:  v12@0:4i8
+- isDroppingIconsInOrOutOfFolder  c8@0:4
+- isDroppingIcon:  c12@0:4@8
+- addIcons:intoFolderIcon:animated:openFolderOnFinish:complete:  v28@0:4@8@12c16c20@?24
+- replaceFolderIcon:byContainedIcon:animated:  v20@0:4@8@12c16
+- _presentNotificationCenterForReachability  v8@0:4
+- _disableReachabilityImmediately:  v12@0:4c8
+- _folderControllerDidReceiveCancelReachabilityAction:  v12@0:4@8
+- _animateFolder:open:animated:withCompletion:  v24@0:4@8c12c16@?20
+- _folderDidFinishOpenClose:animated:  v16@0:4c8c12
+- _cleanupForClosingFolderAnimated:  v12@0:4c8
+- _compactRootListsAfterFolderCloseWithAnimation:  v12@0:4c8
+- _snapshotFadeDidStop:finished:snapshot:  v20@0:4@8@12@16
+- _proposedFolderNameForGrabbedIcon:recipientIcon:  @16@0:4@8@12
+- allowsNestedFolders  c8@0:4
+- shiftFolderViewsForKeyboardAppearing:keyboardHeight:  v16@0:4c8f12
+- _contentViewRelativeFrameForIcon:  {CGRect={CGPoint=ff}{CGSize=ff}}12@0:4@8
+- _runFolderOpenTest  v8@0:4
+- _runFolderCloseTest  v8@0:4
+- _runScrollFolderTest:  v12@0:4i8
+- init  @8@0:4
+- model  @8@0:4
+- dealloc  v8@0:4
+- loadView  v8@0:4
+- contentView  @8@0:4
+- viewWillLayoutSubviews  v8@0:4
+- supportedInterfaceOrientations  I8@0:4
+- shouldAutorotate  c8@0:4
+- _effectiveOrientation  i8@0:4
+- orientation  i8@0:4
+- rootFolder  @8@0:4
+- _rootFolderController  @8@0:4
+- _openFolderController  @8@0:4
+- _currentFolderController  @8@0:4
+- currentIconListIndex  i8@0:4
+- currentFolderIconListIndex  i8@0:4
+- rootIconListAtIndex:  @12@0:4i8
+- folderIconListAtIndex:  @12@0:4I8
+- _prepareToResetRootIconLists  v8@0:4
+- folderNameForDisplayID:  @12@0:4@8
+- _resetRootIconLists  v8@0:4
+- _iconVisibilityChanged:  v12@0:4@8
+- showDeveloperBuildExpirationAlertIfNecessaryFromLockscreen:toLauncher:  v16@0:4c8c12
+- showInfoAlertIfNeeded:  v12@0:4c8
+- showCarrierDebuggingAlertIfNeeded  v8@0:4
+- isScrolling  c8@0:4
+- isFolderScrolling  c8@0:4
+- updateCurrentIconListIndexAndVisibility  v8@0:4
+- updateCurrentIconListIndexAndVisibility:  v12@0:4c8
+- resetCurrentVisibleIconListImageVisibilityAndJitterState  v8@0:4
+- currentRootIconList  @8@0:4
+- dockListView  @8@0:4
+- currentFolderIconList  @8@0:4
+- dropDestinationIconListIndex  i8@0:4
+- dropDestinationIconList  @8@0:4
+- _iconCanBeGrabbed:  c12@0:4@8
+- _shouldLockItemsInStoreDemoMode  c8@0:4
+- scrollToIconListContainingIcon:animate:  v16@0:4@8c12
+- scrollToIconListAtIndex:animate:  c16@0:4i8c12
+- handleHomeButtonTap  v8@0:4
+- _willRotateToInterfaceOrientation:duration:  v20@0:4i8d12
+- _willAnimateRotationToInterfaceOrientation:duration:  v20@0:4i8d12
+- _didRotateFromInterfaceOrientation:  v12@0:4i8
+- viewWillTransitionToSize:withTransitionCoordinator:  v20@0:4{CGSize=ff}8@16
+- addNewIconsToDesignatedLocations:saveIconState:  v16@0:4@8c12
+- addNewIconToDesignatedLocation:animate:scrollToList:saveIconState:  v24@0:4@8c12c16c20
+- replaceIconAtPath:withIcon:saveState:  v20@0:4@8@12c16
+- iconToReveal  @8@0:4
+- setIconToReveal:revealingPrevious:  v16@0:4@8c12
+- finishInstallingIconAnimated:  v12@0:4c8
+- scrollToIconToRevealAnimated:  v12@0:4c8
+- placeIcon:atIndexPath:moveNow:layoutNow:pop:  @28@0:4@8@12c16c20c24
+- insertIcon:atIndexPath:moveNow:pop:  @24@0:4@8@12c16c20
+- insertIcon:atIndexPath:moveNow:  @20@0:4@8@12c16
+- insertIcon:intoListView:iconIndex:moveNow:pop:  @28@0:4@8@12i16c20c24
+- insertIcon:intoListView:iconIndex:moveNow:  @24@0:4@8@12i16c20
+- removeIcon:andCompactFolder:folderRef:  v20@0:4@8c12^@16
+- removeIcon:compactFolder:  v16@0:4@8c12
+- uninstallIconAnimationCompletedForIcon:  v12@0:4@8
+- allowsUninstall  c8@0:4
+- isUninstallSupportedForIcon:  c12@0:4@8
+- uninstallIcon:  v12@0:4@8
+- uninstallIcon:animate:  v16@0:4@8c12
+- updateNumberOfRowsWithDuration:  v16@0:4d8
+- setIdleModeText:  v12@0:4@8
+- unscatterAnimated:afterDelay:withCompletion:  v24@0:4c8d12@?20
+- isAnimatingForUnscatter  c8@0:4
+- removeAllIconAnimations  v8@0:4
+- _launchIcon:  v12@0:4@8
+- clearHighlightedIcon  v8@0:4
+- iconWasTapped:  v12@0:4@8
+- setIsEditing:  v12@0:4c8
+- isEditing  c8@0:4
+- isEditingAllowed  c8@0:4
+- _keyboardWillShow:  v12@0:4@8
+- _keyboardWillHide:  v12@0:4@8
+- _moveIconToContentView:  v12@0:4@8
+- moveIconFromWindow:toIconList:  v16@0:4@8@12
+- restoreScrollingAndRotationAfterUngrab  v8@0:4
+- noteViewCovered  v8@0:4
+- setLastTouch:  v12@0:4@8
+- fixupBouncedIconsInFolder:startingWithIndex:  v16@0:4@8i12
+- _dropIcon:withInsertionPath:  v16@0:4@8@12
+- setGrabbedIcon:  v12@0:4@8
+- _iconDropDidFinish:  v12@0:4@8
+- grabbedIcon  @8@0:4
+- setRecipientIcon:duration:  v20@0:4@8d12
+- lastTouchedIcon  @8@0:4
+- setLastTouchedIcon:  v12@0:4@8
+- recipientIcon  @8@0:4
+- _cancelFolderSpringloadTimer  v8@0:4
+- _resetFolderSpringloadTimer  v8@0:4
+- noteGrabbedIconLocationChangedWithTouch:  v12@0:4@8
+- folderSpringloadTimerFired  v8@0:4
+- animationDidStop:finished:  v16@0:4@8c12
+- compactFolders:  v12@0:4@8
+- compactRootIconLists  v8@0:4
+- compactIconsInIconListsInFolder:moveNow:limitToIconList:  v20@0:4@8c12@16
+- layoutIconLists:domino:forceRelayout:  v20@0:4f8c12c16
+- _iconListIndexIsValid:  c12@0:4i8
+- isIconVisiblyRepresented:  c12@0:4@8
+- visibleIconStateDisplayIdentifiers  @8@0:4
+- _noteUserIsInteractingWithIcons  v8@0:4
+- _lockScreenUIWillLock:  v12@0:4@8
+- presentSpotlightFromEdge:fromBreadcrumb:animated:  c20@0:4I8c12c16
+- dismissSpotlightAnimated:  c12@0:4c8
+- dismissSpotlightIfNecessary  c8@0:4
+- _searchViewControllerIsPresented:fromBreadcrumb:  v16@0:4c8c12
+- _presentTopEdgeSpotlight:  c12@0:4c8
+- _dismissTopEdgeSpotlight:  c12@0:4c8
+- _activateShortcutItem:fromApplication:  v16@0:4@8@12
+- _presentRightEdgeSpotlight:  c12@0:4c8
+- _dismissRightEdgeSpotlight:  c12@0:4c8
+- relayout  c8@0:4
+- _iconModelWillReloadIcons:  v12@0:4@8
+- _iconModelDidReloadIcons:  v12@0:4@8
+- _iconModelWillLayout:  v12@0:4@8
+- _iconModelDidLayout:  v12@0:4@8
+- _installedAppsDidChange:  v12@0:4@8
+- _selectIconModel:  v12@0:4c8
+- importIconState:  c12@0:4@8
+- noteIconStateChangedExternally  v8@0:4
+- homescreenIconViewMap  @8@0:4
+- maxListCountForFolders  I8@0:4
+- maxIconCountForListInFolderClass:  I12@0:4#8
+- maxIconCountForDock  I8@0:4
+- maxRowCountForListInRootFolderWithInterfaceOrientation:  I12@0:4i8
+- maxColCountForListInRootFolderWithInterfaceOrientation:  I12@0:4i8
+- supportsDock  c8@0:4
+- canAddWebClip:  c12@0:4@8
+- canAddDownloadingIconForApplication:  c12@0:4@8
+- iconModel:applicationWithBundleIdentifier:  @16@0:4@8@12
+- placeholdersByDisplayIDForIconModel:  @12@0:4@8
+- iconModel:customInsertionIndexPathForIcon:inRootFolder:  @20@0:4@8@12@16
+- canSaveIconState:  c12@0:4@8
+- didSaveIconState:  v12@0:4@8
+- didDeleteIconState:  v12@0:4@8
+- viewMap:maxRecycledViewsOfClass:  I16@0:4@8#12
+- windowForRecycledViewsInViewMap:  @12@0:4@8
+- iconViewClassForIcon:location:  #16@0:4@8i12
+- viewMapShouldPrepareViewsOfClasses:  @12@0:4@8
+- viewMap:numberOfViewsToPrepareOfClass:  I16@0:4@8#12
+- viewMap:locationForIcon:  i16@0:4@8@12
+- viewMap:configureIconView:  v16@0:4@8@12
+- iconHandleLongPress:  v12@0:4@8
+- icon:touchEnded:  v16@0:4@8c12
+- iconTouchBegan:  v12@0:4@8
+- icon:touchMoved:  v16@0:4@8@12
+- iconShouldAllowTap:  c12@0:4@8
+- iconTapped:  v12@0:4@8
+- icon:canReceiveGrabbedIcon:  c16@0:4@8@12
+- iconCloseBoxTapped:  v12@0:4@8
+- iconAllowsBadging:  c12@0:4@8
+- iconViewDisplaysBadges:  c12@0:4@8
+- iconViewDisplaysCloseBox:  c12@0:4@8
+- _badgesAreEnabledForSectionInfo:  c12@0:4@8
+- _updateEnabledBadgesSetWithSections:  v12@0:4@8
+- observer:updateSectionInfo:  v16@0:4@8@12
+- observer:noteServerConnectionStateChanged:  v16@0:4@8c12
+- allApplications  @8@0:4
+- defaultIconState  @8@0:4
+- firstPageLeafIdentifiers  @8@0:4
+- profileConnectionDidReceiveEffectiveSettingsChangedNotification:userInfo:  v16@0:4@8@12
+- profileConnectionDidReceiveProfileListChangedNotification:userInfo:  v16@0:4@8@12
+- applicationRestrictionController:didUpdateVisibleTags:hiddenTags:  v20@0:4@8@12@16
+- _debugStringForIconOrder:  @12@0:4i8
+- _controllerClassForFolderClass:  #12@0:4#8
+- controllerClassForFolder:  #12@0:4@8
+- folderController:draggedIconDidPauseAtLocation:inListView:  c24@0:4@8{CGPoint=ff}12@20
+- folderController:draggedIconDidMoveFromListView:toListView:  c20@0:4@8@12@16
+- folderController:draggedIconMightDropFromListView:  c16@0:4@8@12
+- folderController:draggedIconShouldDropFromListView:  v16@0:4@8@12
+- folderControllerShouldClose:  v12@0:4@8
+- folderControllerShouldBeginEditing:  v12@0:4@8
+- folderControllerDidEndScrolling:  v12@0:4@8
+- folderControllerDidReceiveCancelReachabilityAction:  v12@0:4@8
+- setLegibilitySettings:  v12@0:4@8
+- searchGesture:changedPercentComplete:  v16@0:4@8f12
+- _performReachabilityTransactionForActivate:immediately:  v16@0:4c8c12
+- _shouldRespondToReachability  c8@0:4
+- _shouldCancelFailedReachability  c8@0:4
+- handleReachabilityModeActivated  v8@0:4
+- handleReachabilityModeDeactivated  v8@0:4
+- _canRevealShortcutMenu  c8@0:4
+- _handleShortcutMenuPeek:  v12@0:4@8
+- _revealMenuForIconView:  v12@0:4@8
+- dismissShortcutMenuWithCompletionHandler:  v12@0:4@?8
+- _dismissShortcutMenuAnimated:completionHandler:  v16@0:4c8@?12
+- _cleanupForDismissingShortcutMenu:  v12@0:4@8
+- _aggregateLoggingAppKeyForShortcutMenu:  @12@0:4@8
+- applicationShortcutMenu:activateShortcutItem:index:  v20@0:4@8@12i16
+- applicationShortcutMenuDidPresent:  v12@0:4@8
+- applicationShortcutMenuDidDismiss:  v12@0:4@8
+- applicationShortcutMenu:startEditingForIconView:  v16@0:4@8@12
+- applicationShortcutMenu:launchApplicationWithIconView:  v16@0:4@8@12
+- .cxx_destruct  v8@0:4
+- presentedShortcutMenu  @8@0:4
+- setPresentedShortcutMenu:  v12@0:4@8
+- legibilitySettings  @8@0:4
+- hasRestrictedEnforcedLayout  c8@0:4
+- setHasRestrictedEnforcedLayout:  v12@0:4c8
+@end

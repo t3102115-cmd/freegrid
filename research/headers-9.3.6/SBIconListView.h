@@ -1,0 +1,135 @@
+@interface SBIconListView : UIView
+  ivar _model  @"SBIconListModel"
+  ivar _viewMap  @"SBIconViewMap"
+  ivar _orientation  i
+  ivar _statusBarHeight  f
+  ivar _bouncedIcon  @"SBIcon"
+  ivar _removedIcons  @"NSMutableArray"
+  ivar _rotationContainers  @"NSArray"
+  ivar _needsLayout  b1
+  ivar _rotating  b1
+  ivar _fadeView  @"UIView"
+  ivar _purged  c
+  ivar _notShownIconViews  @"NSMutableSet"
+  ivar _pageContainerGuide  @"UIFocusContainerGuide"
+  ivar _isEditing  c
+  ivar _layoutReversed  c
+  ivar _nextIconFocusGuide  @"UIFocusGuide"
+  ivar _previousIconFocusGuide  @"UIFocusGuide"
+  ivar _layoutDelegate  @"<SBIconListLayoutDelegate>"
+  ivar _wallpaperRelativeFrame  {CGRect="origin"{CGPoint="x"f"y"f}"size"{CGSize="width"f"height"f}}
+  @property orientation  Ti,N,V_orientation
+  @property statusBarHeight  Tf,N,V_statusBarHeight
+  @property editing  Tc,N,GisEditing,V_isEditing
+  @property purged  Tc,N,V_purged
+  @property layoutReversed  Tc,N,GisLayoutReversed,V_layoutReversed
+  @property wallpaperRelativeFrame  T{CGRect={CGPoint=ff}{CGSize=ff}},N,V_wallpaperRelativeFrame
+  @property layoutDelegate  T@"<SBIconListLayoutDelegate>",W,N,V_layoutDelegate
+  @property previousIconFocusGuide  T@"UIFocusGuide",&,N,V_previousIconFocusGuide
+  @property nextIconFocusGuide  T@"UIFocusGuide",&,N,V_nextIconFocusGuide
++ rotationAnchor  i8@0:4
++ iconRowsForInterfaceOrientation:  I12@0:4i8
++ maxVisibleIconRowsInterfaceOrientation:  I12@0:4i8
++ iconColumnsForInterfaceOrientation:  I12@0:4i8
++ maxIcons  I8@0:4
++ maxVisibleIcons  I8@0:4
+- modelClass  #8@0:4
+- init  @8@0:4
+- initWithModel:orientation:viewMap:  @20@0:4@8i12@16
+- dealloc  v8@0:4
+- tintColor  @8@0:4
+- setModel:  v12@0:4@8
+- model  @8@0:4
+- viewMap  @8@0:4
+- baseIconViewClass  #8@0:4
+- setLayoutDelegate:  v12@0:4@8
+- setLayoutReversed:  v12@0:4c8
+- setWallpaperRelativeFrame:  v24@0:4{CGRect={CGPoint=ff}{CGSize=ff}}8
+- _wallpaperRelativeIconCenterForIconImageCenter:  {CGPoint=ff}16@0:4{CGPoint=ff}8
+- _wallpaperRelativeIconCenterForIconView:  {CGPoint=ff}12@0:4@8
+- iconRowsForCurrentOrientation  I8@0:4
+- iconColumnsForCurrentOrientation  I8@0:4
+- iconsInRowForSpacingCalculation  I8@0:4
+- iconRowsForSpacingCalculation  I8@0:4
+- iconLocation  i8@0:4
+- indexForCoordinate:forOrientation:  I20@0:4{SBIconCoordinate=ii}8i16
+- iconCoordinateForIndex:forOrientation:  {SBIconCoordinate=ii}16@0:4I8i12
+- description  @8@0:4
+- rowForIcon:  I12@0:4@8
+- compactIcons:  c12@0:4c8
+- icons  @8@0:4
+- visibleIcons  @8@0:4
+- isEmpty  c8@0:4
+- isFull  c8@0:4
+- containsIcon:  c12@0:4@8
+- firstFreeSlotIndex  I8@0:4
+- firstFreeSlotIndexForType:  I12@0:4i8
+- firstFreeSlotOrLastSlotIndex  I8@0:4
+- firstFreeSlotOrLastSlotIndexForType:  I12@0:4i8
+- _popIconView:  v12@0:4@8
+- _layoutIcon:atIndex:createViewNow:pop:  v24@0:4@8I12c16c20
+- placeIcon:atIndex:moveNow:pop:  @24@0:4@8I12c16c20
+- insertIcon:atIndex:moveNow:pop:  @24@0:4@8I12c16c20
+- insertIcon:atIndex:moveNow:  @20@0:4@8I12c16
+- removedIcons  @8@0:4
+- removeIconAtIndex:  v12@0:4I8
+- removeIcon:  v12@0:4@8
+- setAlphaForAllIcons:  v12@0:4f8
+- removeAllIconAnimations  v8@0:4
+- defaultIconSize  {CGSize=ff}8@0:4
+- originForIconAtIndex:  {CGPoint=ff}12@0:4I8
+- originForIcon:  {CGPoint=ff}12@0:4@8
+- centerForIcon:  {CGPoint=ff}12@0:4@8
+- centerForIconCoordinate:  {CGPoint=ff}16@0:4{SBIconCoordinate=ii}8
+- viewForIcon:  @12@0:4@8
+- coordinateForIcon:  {SBIconCoordinate=ii}12@0:4@8
+- coordinateForIconAtIndex:  {SBIconCoordinate=ii}12@0:4I8
+- indexOfIcon:  I12@0:4@8
+- setFrame:  v24@0:4{CGRect={CGPoint=ff}{CGSize=ff}}8
+- layoutFocusGuides  v8@0:4
+- setIconsNeedLayout  v8@0:4
+- layoutIconsNow  v8@0:4
+- layoutIconsIfNeeded:domino:  v20@0:4d8c16
+- iconAtPoint:index:  @20@0:4{CGPoint=ff}8^I16
+- iconAtPoint:index:proposedOrder:grabbedIcon:  @28@0:4{CGPoint=ff}8^I16^i20@24
+- showAllIcons  v8@0:4
+- showIconImagesFromColumn:toColumn:totalColumns:allowAnimations:  v24@0:4i8i12i16c20
+- updateEditingStateAnimated:  v12@0:4c8
+- _updateEditingStateForIcons:animated:  v16@0:4@8c12
+- enumerateIconsUsingBlock:  v12@0:4@?8
+- enumerateIconViewsUsingBlock:  v12@0:4@?8
+- isDock  c8@0:4
+- setBouncedIcon:  v12@0:4@8
+- bouncedIcon  @8@0:4
+- topIconInset  f8@0:4
+- bottomIconInset  f8@0:4
+- sideIconInset  f8@0:4
+- horizontalBumpForColumn:  f12@0:4I8
+- horizontalIconPadding  f8@0:4
+- verticalIconPadding  f8@0:4
+- originForIconAtCoordinate:  {CGPoint=ff}16@0:4{SBIconCoordinate=ii}8
+- columnAtPoint:  I16@0:4{CGPoint=ff}8
+- rowAtPoint:  I16@0:4{CGPoint=ff}8
+- prepareToRotateToInterfaceOrientation:  v12@0:4i8
+- performRotationWithDuration:  v16@0:4d8
+- cleanupAfterRotation  v8@0:4
+- _sendLayoutDelegateWouldHaveMovedIcon:  v12@0:4@8
+- _sendLayoutDelegateLayoutInvalidated  v8@0:4
+- _allowsFocusToLeaveViaHeading:  c12@0:4I8
+- .cxx_destruct  v8@0:4
+- isEditing  c8@0:4
+- setEditing:  v12@0:4c8
+- purged  c8@0:4
+- setPurged:  v12@0:4c8
+- isLayoutReversed  c8@0:4
+- nextIconFocusGuide  @8@0:4
+- setNextIconFocusGuide:  v12@0:4@8
+- previousIconFocusGuide  @8@0:4
+- setPreviousIconFocusGuide:  v12@0:4@8
+- orientation  i8@0:4
+- setOrientation:  v12@0:4i8
+- statusBarHeight  f8@0:4
+- setStatusBarHeight:  v12@0:4f8
+- wallpaperRelativeFrame  {CGRect={CGPoint=ff}{CGSize=ff}}8@0:4
+- layoutDelegate  @8@0:4
+@end

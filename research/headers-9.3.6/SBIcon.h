@@ -1,0 +1,100 @@
+@interface SBIcon : NSObject
+  ivar _observers  @"NSHashTable"
+  ivar _badgeNumberOrString  @
+  ivar _uninstalled  b1
+  ivar _cachedIconImages  [14@"UIImage"]
+  @property shouldWarmUp  Tc,R,N
+  @property displayName  T@"NSString",R,C,N
+  @property hash  TI,R
+  @property superclass  T#,R
+  @property description  T@"NSString",R,C
+  @property debugDescription  T@"NSString",R,C
++ _iconImagesMemoryPool  @8@0:4
++ _iconImageOfSize:scale:failGracefully:drawing:  @28@0:4{CGSize=ff}8f16c20@?24
++ memoryMappedIconImageForIconImage:  @12@0:4@8
++ memoryMappedIconImageOfSize:scale:withDrawing:  @24@0:4{CGSize=ff}8f16@?20
+- isPlaceholder  c8@0:4
+- isGrabbedIconPlaceholder  c8@0:4
+- isEmptyPlaceholder  c8@0:4
+- _notifyImageDidUpdate  v8@0:4
+- _notifyAccessoriesDidUpdate  v8@0:4
+- _notifyLaunchEnabledDidChange  v8@0:4
+- iconImageViewClassForLocation:  #12@0:4i8
+- isLeafIcon  c8@0:4
+- leafIdentifier  @8@0:4
+- applicationBundleID  @8@0:4
+- isFolderIcon  c8@0:4
+- folder  @8@0:4
+- hasFolderIconView  c8@0:4
+- isDownloadingIcon  c8@0:4
+- appPlaceholder  @8@0:4
+- isBookmarkIcon  c8@0:4
+- isApplicationIcon  c8@0:4
+- application  @8@0:4
+- description  @8@0:4
+- addObserver:  v12@0:4@8
+- removeObserver:  v12@0:4@8
+- hasObserver:  c12@0:4@8
+- nodeIdentifier  @8@0:4
+- containsNodeIdentifier:  c12@0:4@8
+- containedNodeIdentifiers  @8@0:4
+- indexPathsForContainedNodeIdentifier:prefixPath:  @16@0:4@8@12
+- nodesAlongIndexPath:consumedIndexes:  @16@0:4@8I12
+- addNodeObserver:  v12@0:4@8
+- removeNodeObserver:  v12@0:4@8
+- nodeDescriptionWithPrefix:  @12@0:4@8
+- shouldWarmUp  c8@0:4
+- iconFormatForLocation:  i12@0:4i8
+- init  @8@0:4
+- dealloc  v8@0:4
+- localeChanged  v8@0:4
+- displayNameForLocation:  @12@0:4i8
+- displayName  @8@0:4
+- canEllipsizeLabel  c8@0:4
+- canTightenLabel  c8@0:4
+- localizedCompareDisplayNames:  i12@0:4@8
+- matchesEntity:  c12@0:4@8
+- tags  @8@0:4
+- launchEnabled  c8@0:4
+- generateIconImage:  @12@0:4i8
+- shouldCacheImageForFormat:  c12@0:4i8
+- getStandardIconImageForLocation:  @12@0:4i8
+- getIconImage:  @12@0:4i8
+- getCachedIconImage:  @12@0:4i8
+- getUnmaskedIconImage:  @12@0:4i8
+- getGenericIconImage:  @12@0:4i8
+- gridCellImage  @8@0:4
+- purgeCachedImages  v8@0:4
+- reloadIconImage  v8@0:4
+- reloadIconImagePurgingImageCache:  v12@0:4c8
+- badgeValue  i8@0:4
+- badgeNumberOrString  @8@0:4
+- accessoryTextForLocation:  @12@0:4i8
+- accessoryTypeForLocation:  i12@0:4i8
+- noteBadgeDidChange  v8@0:4
+- setBadge:  v12@0:4@8
+- isRecentlyUpdated  c8@0:4
+- isBeta  c8@0:4
+- automationID  @8@0:4
+- launchFromLocation:context:  v16@0:4i8@12
+- progressState  i8@0:4
+- progressPercent  f8@0:4
+- progressIsPaused  c8@0:4
+- shouldAnimateProgress  c8@0:4
+- isUninstallSupported  c8@0:4
+- completeUninstall  v8@0:4
+- setUninstalled  v8@0:4
+- isUninstalled  c8@0:4
+- uninstallAlertTitle  @8@0:4
+- uninstallAlertTitleNotAllowed  @8@0:4
+- uninstallAlertBody  @8@0:4
+- uninstallAlertBodyNotAllowed  @8@0:4
+- uninstallAlertBodyForAppWithDocumentsInCloud  @8@0:4
+- uninstallAlertBodyForAppWithDocumentUpdatesPending  @8@0:4
+- uninstallAlertConfirmTitle  @8@0:4
+- uninstallAlertCancelTitle  @8@0:4
+- folderTitleOptions  @8@0:4
+- folderFallbackTitle  @8@0:4
+- canReceiveGrabbedIcon  c8@0:4
+- .cxx_destruct  v8@0:4
+@end

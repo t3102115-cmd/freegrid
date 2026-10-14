@@ -1,0 +1,37 @@
+@interface SBIconIndexMutableList : NSObject
+  ivar _nodes  @"NSMutableArray"
+  ivar _index  @"NSMapTable"
+  ivar _observer  @"<SBIconIndexMutableListObserver>"
+  @property observer  T@"<SBIconIndexMutableListObserver>",W,N,V_observer
+  @property hash  TI,R
+  @property superclass  T#,R
+  @property description  T@"NSString",R,C
+  @property debugDescription  T@"NSString",R,C
+- init  @8@0:4
+- dealloc  v8@0:4
+- containsNodeIdentifier:  c12@0:4@8
+- containedNodeIdentifiers  @8@0:4
+- indexPathsForContainedNodeIdentifier:prefixPath:  @16@0:4@8@12
+- nodesAlongIndexPath:consumedIndexes:  @16@0:4@8I12
+- nodes  @8@0:4
+- count  I8@0:4
+- indexOfNode:  I12@0:4@8
+- containsNode:  c12@0:4@8
+- nodeAtIndex:  @12@0:4I8
+- insertNode:atIndex:  v16@0:4@8I12
+- addNode:  v12@0:4@8
+- replaceNodeAtIndex:withNode:  v16@0:4I8@12
+- removeNode:  v12@0:4@8
+- removeNodeAtIndex:  v12@0:4I8
+- removeNodesAtIndexes:  v12@0:4@8
+- removeAllNodes  v8@0:4
+- enumerateNodesUsingBlock:  v12@0:4@?8
+- sortUsingSelector:  v12@0:4:8
+- node:didAddContainedNodeIdentifiers:  v16@0:4@8@12
+- node:didRemoveContainedNodeIdentifiers:  v16@0:4@8@12
+- countByEnumeratingWithState:objects:count:  I20@0:4^{?=L^@^L[5L]}8^@12I16
+- indexDescriptionWithPrefix:  @12@0:4@8
+- .cxx_destruct  v8@0:4
+- observer  @8@0:4
+- setObserver:  v12@0:4@8
+@end

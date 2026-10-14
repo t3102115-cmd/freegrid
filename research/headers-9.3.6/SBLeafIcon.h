@@ -1,0 +1,46 @@
+@interface SBLeafIcon : 
+  ivar _leafIdentifier  @"NSString"
+  ivar _applicationBundleID  @"NSString"
+  ivar _dataSources  @"NSMutableSet"
+  ivar _activeDataSource  @"<SBLeafIconDataSource>"
+  ivar _dataSourceAtUninstallation  @"<SBLeafIconDataSource>"
+- init  @8@0:4
+- initWithLeafIdentifier:applicationBundleID:  @16@0:4@8@12
+- dealloc  v8@0:4
+- description  @8@0:4
+- isEqual:  c12@0:4@8
+- hash  I8@0:4
+- copyWithZone:  @12@0:4^{_NSZone=}8
+- leafIdentifier  @8@0:4
+- applicationBundleID  @8@0:4
+- _updateActiveDataSource  v8@0:4
+- addIconDataSource:  v12@0:4@8
+- removeIconDataSource:  v12@0:4@8
+- removeIconDataSourcesOfClass:  v12@0:4#8
+- activeDataSource  @8@0:4
+- _noteActiveDataSourceDidChangeAndReloadIcon:  v12@0:4c8
+- _noteActiveDataSourceDidGenerateIconFormat:  v12@0:4i8
+- _noteActiveDataSourceDidChangeNotification:  v12@0:4@8
+- _noteActiveDataSourceDidGenerateImageNotification:  v12@0:4@8
+- _noteDataSourceDidInvalidateNotification:  v12@0:4@8
+- generateIconImage:  @12@0:4i8
+- getGenericIconImage:  @12@0:4i8
+- displayNameForLocation:  @12@0:4i8
+- canEllipsizeLabel  c8@0:4
+- canTightenLabel  c8@0:4
+- progressState  i8@0:4
+- progressPercent  f8@0:4
+- progressIsPaused  c8@0:4
+- badgeNumberOrString  @8@0:4
+- accessoryTextForLocation:  @12@0:4i8
+- accessoryTypeForLocation:  i12@0:4i8
+- isRecentlyUpdated  c8@0:4
+- isBeta  c8@0:4
+- isUninstallSupported  c8@0:4
+- setUninstalled  v8@0:4
+- completeUninstall  v8@0:4
+- launchEnabled  c8@0:4
+- launchFromLocation:context:  v16@0:4i8@12
+- nodeIdentifier  @8@0:4
+- .cxx_destruct  v8@0:4
+@end

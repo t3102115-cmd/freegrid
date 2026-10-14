@@ -1,0 +1,61 @@
+@interface SBIconListModel : NSObject
+  ivar _icons  @"SBIconIndexMutableList"
+  ivar _maxIconCount  I
+  ivar _nodeObservers  @"NSHashTable"
+  ivar _listObservers  @"NSHashTable"
+  ivar _iconStateIsDirty  c
+  ivar _folder  @"SBFolder"
+  @property folder  T@"SBFolder",R,W,N,V_folder
+  @property hash  TI,R
+  @property superclass  T#,R
+  @property description  T@"NSString",R,C
+  @property debugDescription  T@"NSString",R,C
+- initWithFolder:maxIconCount:  @16@0:4@8I12
+- init  @8@0:4
+- dealloc  v8@0:4
+- numberOfIcons  I8@0:4
+- maxNumberOfIcons  I8@0:4
+- icons  @8@0:4
+- iconAtIndex:  @12@0:4I8
+- indexForIcon:  I12@0:4@8
+- indexForLeafIconWithIdentifier:  I12@0:4@8
+- containsIcon:  c12@0:4@8
+- containsLeafIconWithIdentifier:  c12@0:4@8
+- enumerateIconsUsingBlock:  v12@0:4@?8
+- enumerateFolderIconsUsingBlock:  v12@0:4@?8
+- allowsAddingIcon:  c12@0:4@8
+- addIcon:  c12@0:4@8
+- addIcon:asDirty:  c16@0:4@8c12
+- placeIcon:atIndex:  @16@0:4@8^I12
+- insertIcon:atIndex:  @16@0:4@8^I12
+- removeIconAtIndex:  v12@0:4I8
+- removeIcon:  v12@0:4@8
+- firstFreeSlotIndex  I8@0:4
+- firstFreeSlotIndexForType:  I12@0:4i8
+- isEmpty  c8@0:4
+- isFull  c8@0:4
+- needsCompacting  c8@0:4
+- compactIcons  I8@0:4
+- iconsOfClass:  @12@0:4#8
+- isIconStateDirty  c8@0:4
+- markIconStateClean  v8@0:4
+- description  @8@0:4
+- warmUpIconImagesForLocation:  v12@0:4i8
+- sortUsingSelector:  v12@0:4:8
+- addListObserver:  v12@0:4@8
+- removeListObserver:  v12@0:4@8
+- _notifyListObservers:  v12@0:4@?8
+- nodeIdentifier  @8@0:4
+- containsNodeIdentifier:  c12@0:4@8
+- containedNodeIdentifiers  @8@0:4
+- indexPathsForContainedNodeIdentifier:prefixPath:  @16@0:4@8@12
+- nodesAlongIndexPath:consumedIndexes:  @16@0:4@8I12
+- addNodeObserver:  v12@0:4@8
+- removeNodeObserver:  v12@0:4@8
+- nodeDescriptionWithPrefix:  @12@0:4@8
+- list:didAddContainedNodeIdentifiers:  v16@0:4@8@12
+- list:didRemoveContainedNodeIdentifiers:  v16@0:4@8@12
+- countByEnumeratingWithState:objects:count:  I20@0:4^{?=L^@^L[5L]}8^@12I16
+- .cxx_destruct  v8@0:4
+- folder  @8@0:4
+@end

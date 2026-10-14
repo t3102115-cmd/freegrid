@@ -1,0 +1,31 @@
+@interface SBRootFolderWithDock : 
+  ivar _dock  @"SBIconListModel"
+  @property hash  TI,R
+  @property superclass  T#,R
+  @property description  T@"NSString",R,C
+  @property debugDescription  T@"NSString",R,C
+- dealloc  v8@0:4
+- supportsDock  c8@0:4
+- dock  @8@0:4
+- _setDock:  v12@0:4@8
+- listAtIndex:  @12@0:4I8
+- indexOfList:  I12@0:4@8
+- listContainingIcon:  @12@0:4@8
+- listContainingLeafIconWithIdentifier:  @12@0:4@8
+- removeEmptyList:  v12@0:4@8
+- isIconStateDirty  c8@0:4
+- markIconStateClean  v8@0:4
+- iconsOfClass:  @12@0:4#8
+- sort  v8@0:4
+- enumerateAllIconsUsingBlock:  v12@0:4@?8
+- containsNodeIdentifier:  c12@0:4@8
+- containedNodeIdentifiers  @8@0:4
+- indexPathsForContainedNodeIdentifier:prefixPath:  @16@0:4@8@12
+- nodesAlongIndexPath:consumedIndexes:  @16@0:4@8I12
+- _notifyIndexChange:identifiers:withValidationBlock:  v20@0:4i8@12@?16
+- list:didAddContainedNodeIdentifiers:  v16@0:4@8@12
+- list:didRemoveContainedNodeIdentifiers:  v16@0:4@8@12
+- node:didAddContainedNodeIdentifiers:  v16@0:4@8@12
+- node:didRemoveContainedNodeIdentifiers:  v16@0:4@8@12
+- .cxx_destruct  v8@0:4
+@end

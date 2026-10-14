@@ -1,0 +1,19 @@
+@interface SBPlaceholderIcon : 
+  ivar _nodeIdentifier  @
+  ivar _icon  @"SBIcon"
++ placeholderNodeIdentifierForIcon:  @12@0:4@8
++ placeholderForIcon:  @12@0:4@8
++ grabbedIconPlaceholder  @8@0:4
++ setGrabbedIcon:  v12@0:4@8
++ emptyPlaceholder  @8@0:4
+- _initWithNodeIdentifier:icon:  @16@0:4@8@12
+- nodeIdentifier  @8@0:4
+- automationID  @8@0:4
+- generateIconImage:  @12@0:4i8
+- shouldCacheImageForFormat:  c12@0:4i8
+- isPlaceholder  c8@0:4
+- isGrabbedIconPlaceholder  c8@0:4
+- isEmptyPlaceholder  c8@0:4
+- referencedIcon  @8@0:4
+- .cxx_destruct  v8@0:4
+@end

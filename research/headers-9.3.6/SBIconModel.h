@@ -1,0 +1,88 @@
+@interface SBIconModel : NSObject
+  ivar _desiredIconState  @"NSDictionary"
+  ivar _desiredIconStateFlattened  @"NSOrderedSet"
+  ivar _leafIconsByIdentifier  @"NSMutableDictionary"
+  ivar _hiddenIconTags  @"NSSet"
+  ivar _visibleIconTags  @"NSSet"
+  ivar _tagsHaveBeenSet  c
+  ivar _rootFolder  @"SBRootFolder"
+  ivar _store  @"<SBIconModelStore>"
+  ivar _applicationDataSource  @"<SBIconModelApplicationDataSource>"
+  ivar _delegate  @"<SBIconModelDelegate>"
+  ivar _allowsSaving  c
+  ivar _ignoresIconsNotInIconState  c
+  ivar _sortsIconsAlphabetically  c
+  ivar _archivedLeafIdentifiers  @"NSSet"
+  @property allowsSaving  Tc,N,V_allowsSaving
+  @property delegate  T@"<SBIconModelDelegate>",W,N,V_delegate
+  @property store  T@"<SBIconModelStore>",R,N,V_store
+  @property applicationDataSource  T@"<SBIconModelApplicationDataSource>",R,N,V_applicationDataSource
+  @property ignoresIconsNotInIconState  Tc,N,V_ignoresIconsNotInIconState
+  @property sortsIconsAlphabetically  Tc,N,V_sortsIconsAlphabetically
+  @property leafIconsByIdentifier  T@"NSDictionary",&,N,V_leafIconsByIdentifier
+  @property archivedLeafIdentifiers  T@"NSSet",C,N,V_archivedLeafIdentifiers
+- initWithStore:applicationDataSource:  @16@0:4@8@12
+- dealloc  v8@0:4
+- rootFolder  @8@0:4
+- localeChanged  v8@0:4
+- setVisibilityOfIconsWithVisibleTags:hiddenTags:  v16@0:4@8@12
+- isIconVisible:  c12@0:4@8
+- _canAddDownloadingIconForBundleID:  c12@0:4@8
+- addDownloadingIconForDownload:  @12@0:4@8
+- addDownloadingIconForBundleID:withIdentifier:  @16@0:4@8@12
+- downloadingIconForBundleIdentifier:  @12@0:4@8
+- bookmarkIconForWebClipIdentifier:  @12@0:4@8
+- addBookmarkIconForWebClip:  @12@0:4@8
+- addIconForApplication:  v12@0:4@8
+- loadAllIcons  v8@0:4
+- visibleIconIdentifiers  @8@0:4
+- leafIcons  @8@0:4
+- leafIconsWithIdentifiers:  @12@0:4@8
+- iconsOfClass:  @12@0:4#8
+- _applicationIcons  @8@0:4
+- expectedIconForDisplayIdentifier:  @12@0:4@8
+- leafIconForIdentifier:  @12@0:4@8
+- applicationIconForBundleIdentifier:  @12@0:4@8
+- applicationWithBundleIdentifier:  @12@0:4@8
+- placeholdersByDisplayID  @8@0:4
+- iconState  @8@0:4
+- _iconState  @8@0:4
+- _unarchiveRootFolder  @8@0:4
+- addIcon:  v12@0:4@8
+- removeIcon:  v12@0:4@8
+- removeIconForIdentifier:  v12@0:4@8
+- indexPathForIconInPlatformState:  @12@0:4@8
+- hasDesiredIconState  c8@0:4
+- clearDesiredIconState  v8@0:4
+- clearDesiredIconStateIfPossible  v8@0:4
+- indexPathForNewIcon:isDesignatedLocation:replaceExistingIconAtIndexPath:  @20@0:4@8^c12^@16
+- _indexPathInRootFolder:forNewIcon:isDesignatedLocation:replaceExistingIconAtIndexPath:  @24@0:4@8@12^c16^@20
+- deleteIconState  v8@0:4
+- _saveDesiredIconState  v8@0:4
+- _saveIconState  v8@0:4
+- saveIconStateIfNeeded  v8@0:4
+- _replaceAppIconsWithDownloadingIcons  v8@0:4
+- _replaceAppIconsWithDownloadingIcons:  v12@0:4@8
+- layout  v8@0:4
+- description  @8@0:4
+- forecastedLayoutForIconState:includeMissingIcons:  @16@0:4@8c12
+- exportState:  @12@0:4c8
+- exportPendingState:includeMissingIcons:  @16@0:4c8c12
+- exportFlattenedState:includeMissingIcons:  @16@0:4c8c12
+- importState:  c12@0:4@8
+- .cxx_destruct  v8@0:4
+- leafIconsByIdentifier  @8@0:4
+- setLeafIconsByIdentifier:  v12@0:4@8
+- allowsSaving  c8@0:4
+- setAllowsSaving:  v12@0:4c8
+- delegate  @8@0:4
+- setDelegate:  v12@0:4@8
+- store  @8@0:4
+- applicationDataSource  @8@0:4
+- ignoresIconsNotInIconState  c8@0:4
+- setIgnoresIconsNotInIconState:  v12@0:4c8
+- sortsIconsAlphabetically  c8@0:4
+- setSortsIconsAlphabetically:  v12@0:4c8
+- archivedLeafIdentifiers  @8@0:4
+- setArchivedLeafIdentifiers:  v12@0:4@8
+@end

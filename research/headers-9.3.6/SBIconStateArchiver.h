@@ -1,0 +1,33 @@
+@interface SBIconStateArchiver : NSObject
++ archive:  @12@0:4@8
++ archiveRootFolder:  @12@0:4@8
++ unarchive:withIconSource:  @16@0:4@8@12
++ modernizeRootArchive:  @12@0:4@8
++ leafIdentifiersFromArchive:  @12@0:4@8
++ _addLeafNodesForNode:toSet:  v16@0:4@8@12
++ indexPathForLeafIdentifier:inArchive:  @16@0:4@8@12
++ _pathForNode:toIdentifier:  @16@0:4@8@12
++ iTunesRepresentationFromRootArchive:preApex:pending:iconSource:  @24@0:4@8c12c16@20
++ rootArchiveFromITunesRepresentation:  @12@0:4@8
++ _newFolderIconForFolder:  @12@0:4@8
++ _iconFromRepresentation:withContext:  @16@0:4@8@12
++ _representationForIcon:  @12@0:4@8
++ _representationForList:  @12@0:4@8
++ _listFromRepresentation:withMaxIconCount:context:overflow:  @24@0:4@8I12@16@20
++ _folderClassForFolderType:context:  #16@0:4@8@12
++ _folderFromRepresentation:withContext:  @16@0:4@8@12
++ _folderTypeForFolder:  @12@0:4@8
++ _representationForFolder:  @12@0:4@8
++ _representationForNode:  @12@0:4@8
++ _nodeFromRepresentation:context:  @16@0:4@8@12
++ _migrateLeafIdentifierIfNecessary:  @12@0:4@8
++ _modernIconCellForCell:allowFolders:  @16@0:4@8c12
++ _modernIconListForList:allowFolders:  @16@0:4@8c12
++ _modernIconListsForLists:allowFolders:  @16@0:4@8c12
++ _iTunesIconListsForLists:preApex:pending:iconSource:  @24@0:4@8c12c16@20
++ _iTunesIconListForList:preApex:pending:iconSource:  @24@0:4@8c12c16@20
++ _iTunesIconCellForCell:preApex:pending:iconSource:  @24@0:4@8c12c16@20
++ _iTunesDictionaryForLeafIdentifier:  @12@0:4@8
++ _iTunesDictionaryForLeafIcon:  @12@0:4@8
++ _iTunesDictionaryForDownloadingIcon:  @12@0:4@8
+@end

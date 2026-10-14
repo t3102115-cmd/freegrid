@@ -1,0 +1,202 @@
+@interface SBIconView : UIView
+  ivar _icon  @"SBIcon"
+  ivar _iconLocation  i
+  ivar _currentImageView  @"UIView"
+  ivar _iconImageView  @"SBIconImageView"
+  ivar _crossfadeView  @"SBIconImageCrossfadeView"
+  ivar _accessoryView  @"UIView<SBIconAccessoryView>"
+  ivar _closeBox  @"SBCloseBoxView"
+  ivar _closeBoxParallaxSettings  @"SBFParallaxSettings"
+  ivar _wallpaperRelativeCloseBoxCenter  {CGPoint="x"f"y"f}
+  ivar _labelView  @"SBIconLabelView"
+  ivar _labelAccessoryView  @"UIView<SBReusableView>"
+  ivar _currentLabelAccessoryType  i
+  ivar _dropGlow  @"SBFolderIconBackgroundView"
+  ivar _shortcutMenuPeekGesture  @"UILongPressGestureRecognizer"
+  ivar _shortcutMenuPresentProgress  @"UIPreviewForceInteractionProgress"
+  ivar _drawsLabel  b1
+  ivar _isEditing  b1
+  ivar _isPaused  b1
+  ivar _isGrabbed  b1
+  ivar _isOverlapping  b1
+  ivar _refusesRecipientStatus  b1
+  ivar _highlighted  b1
+  ivar _launchDisabled  b1
+  ivar _isJittering  b1
+  ivar _allowJitter  b1
+  ivar _touchDownInIcon  b1
+  ivar _hideLabel  b1
+  ivar _hideLabelAccessoryView  I
+  ivar _unjitterPoint  {CGPoint="x"f"y"f}
+  ivar _grabPoint  {CGPoint="x"f"y"f}
+  ivar _longPressTimer  @"NSTimer"
+  ivar _longPressGrabDuration  d
+  ivar _visibleImageRect  {CGRect="origin"{CGPoint="x"f"y"f}"size"{CGSize="width"f"height"f}}
+  ivar _delegate  @"<SBIconViewDelegate>"
+  ivar _observer  @"<SBIconViewObserver>"
+  ivar _legibilitySettings  @"_UILegibilitySettings"
+  ivar _iconImageAlpha  f
+  ivar _iconAccessoryAlpha  f
+  ivar _iconLabelAlpha  f
+  ivar _wallpaperRelativeImageCenter  {CGPoint="x"f"y"f}
+  @property icon  T@"SBIcon",&,N
+  @property delegate  T@"<SBIconViewDelegate>",W,N,V_delegate
+  @property observer  T@"<SBIconViewObserver>",W,N,V_observer
+  @property location  Ti,N,V_iconLocation
+  @property legibilitySettings  T@"_UILegibilitySettings",&,N,V_legibilitySettings
+  @property iconImageAlpha  Tf,N,V_iconImageAlpha
+  @property iconAccessoryAlpha  Tf,N,V_iconAccessoryAlpha
+  @property iconLabelAlpha  Tf,N,V_iconLabelAlpha
+  @property shortcutMenuPeekGesture  T@"UILongPressGestureRecognizer",&,N,V_shortcutMenuPeekGesture
+  @property shortcutMenuPresentProgress  T@"UIPreviewForceInteractionProgress",&,N,V_shortcutMenuPresentProgress
+  @property isEditing  Tc,N
+  @property shouldShowLabelAccessoryView  Tc,R,N
+  @property currentLabelAccessoryType  Ti,R,N,V_currentLabelAccessoryType
+  @property wallpaperRelativeImageCenter  T{CGPoint=ff},N,V_wallpaperRelativeImageCenter
+  @property hash  TI,R
+  @property superclass  T#,R
+  @property description  T@"NSString",R,C
+  @property debugDescription  T@"NSString",R,C
++ _defaultIconFormat  i8@0:4
++ canShowLabelAccessoryView  c8@0:4
++ labelAccessoryViewRightMargin  f8@0:4
++ defaultIconSize  {CGSize=ff}8@0:4
++ _labelHeight  f8@0:4
++ defaultIconImageSize  {CGSize=ff}8@0:4
++ defaultIconImageFrame  {CGRect={CGPoint=ff}{CGSize=ff}}8@0:4
++ defaultIconImageCenter  {CGPoint=ff}8@0:4
++ defaultVisibleIconImageSize  {CGSize=ff}8@0:4
++ _rectForLayoutMetric:  {CGRect={CGPoint=ff}{CGSize=ff}}12@0:4i8
++ maxLabelSize  {CGSize=ff}8@0:4
++ _jitterPositionAnimation  @8@0:4
++ _jitterTransformAnimation  @8@0:4
+- initWithContentType:  @12@0:4I8
+- dealloc  v8@0:4
+- icon  @8@0:4
+- setPaused:  v12@0:4c8
+- _setIcon:animated:  v16@0:4@8c12
+- setIcon:  v12@0:4@8
+- swapInIcon:  v12@0:4@8
+- setLocation:  v12@0:4i8
+- iconImageSnapshot  @8@0:4
+- iconImageFrame  {CGRect={CGPoint=ff}{CGSize=ff}}8@0:4
+- iconImageCenter  {CGPoint=ff}8@0:4
+- iconImageVisibleSize  {CGSize=ff}8@0:4
+- setIconImageAndAccessoryAlpha:  v12@0:4f8
+- setIconImageAlpha:  v12@0:4f8
+- _applyIconImageAlpha:  v12@0:4f8
+- setIconAccessoryAlpha:  v12@0:4f8
+- _applyIconAccessoryAlpha:  v12@0:4f8
+- setIconLabelAlpha:  v12@0:4f8
+- _applyIconLabelAlpha:  v12@0:4f8
+- setLabelHidden:  v12@0:4c8
+- setLabelAccessoryViewHidden:  v12@0:4c8
+- setShortcutMenuPeekGesture:  v12@0:4@8
+- _setPreparingForPotentialShortcutMenuPresentation:  v12@0:4c8
+- layoutSubviews  v8@0:4
+- _frameForImageView  {CGRect={CGPoint=ff}{CGSize=ff}}8@0:4
+- _labelVerticalOffset  f8@0:4
+- _frameForVisibleImage  {CGRect={CGPoint=ff}{CGSize=ff}}8@0:4
+- _frameForLabel  {CGRect={CGPoint=ff}{CGSize=ff}}8@0:4
+- _frameForLabelAccessoryViewWithLabelFrame:  {CGRect={CGPoint=ff}{CGSize=ff}}24@0:4{CGRect={CGPoint=ff}{CGSize=ff}}8
+- _frameForAccessoryView  {CGRect={CGPoint=ff}{CGSize=ff}}8@0:4
+- _centerForCloseBox  {CGPoint=ff}8@0:4
+- _centerForCloseBoxRelativeToVisibleImageFrame:  {CGPoint=ff}24@0:4{CGRect={CGPoint=ff}{CGSize=ff}}8
+- _iconImageView  @8@0:4
+- _labelImage  @8@0:4
+- setWallpaperRelativeImageCenter:  v16@0:4{CGPoint=ff}8
+- setSuppressesBlurryBackgroundChanges:  v12@0:4c8
+- setShouldRasterizeImageView:  v12@0:4c8
+- _updateAdaptiveColors  v8@0:4
+- labelView  @8@0:4
+- invalidateLabelLayoutGeometry  v8@0:4
+- _labelImageParameters  @8@0:4
+- _updateLabel  v8@0:4
+- setLegibilitySettings:  v12@0:4@8
+- _legibilitySettingsWithParameters:  @12@0:4@8
+- _legibilitySettingsWithPrimaryColor:  @12@0:4@8
+- _legibilitySettingsWithStyle:primaryColor:  @16@0:4i8@12
+- _configureLabelAccessoryViewForType:  v12@0:4i8
+- shouldShowLabelAccessoryView  c8@0:4
+- _updateLabelAccessoryView  v8@0:4
+- _updateIconImageViewAnimated:  v12@0:4c8
+- _updateAccessoryViewWithAnimation:  v12@0:4c8
+- _createAccessoryViewIfNecessary  v8@0:4
+- _automationID  @8@0:4
+- pointMostlyInside:withEvent:  c20@0:4{CGPoint=ff}8@16
+- _updateBrightness  v8@0:4
+- allowsTapWhileEditing  c8@0:4
+- isHighlighted  c8@0:4
+- setHighlighted:  v12@0:4c8
+- isInDock  c8@0:4
+- setFrame:  v24@0:4{CGRect={CGPoint=ff}{CGSize=ff}}8
+- tintColor  @8@0:4
+- _recursiveNotifyInteractionTintColorDidChangeForReasons:  v12@0:4I8
+- _recursivelyUpdateBackdropMaskFrames  v8@0:4
+- _updateJitter  v8@0:4
+- setAllowJitter:  v12@0:4c8
+- removeAllIconAnimations  v8@0:4
+- setIconPosition:  v16@0:4{CGPoint=ff}8
+- setRefusesRecipientStatus:  v12@0:4c8
+- canReceiveGrabbedIcon:  c12@0:4@8
+- grabDurationForEvent:  d12@0:4@8
+- setIsGrabbed:  v12@0:4c8
+- isGrabbed  c8@0:4
+- setIsOverlapping:  v12@0:4c8
+- prepareDropGlow  v8@0:4
+- showDropGlow:  v12@0:4c8
+- removeDropGlow  v8@0:4
+- dropGlow  @8@0:4
+- prepareToCrossfadeImageWithView:maskCorners:trueCrossfade:  v20@0:4@8c12c16
+- prepareToCrossfadeImageWithView:maskCorners:trueCrossfade:anchorPoint:  v28@0:4@8c12c16{CGPoint=ff}20
+- setImageCrossfadeFadeFraction:  v12@0:4f8
+- setImageCrossfadeMorphFraction:totalScale:  v16@0:4f8f12
+- cleanupAfterImageCrossfade  v8@0:4
+- _handleFirstHalfLongPressTimer:  v12@0:4@8
+- _handleSecondHalfLongPressTimer:  v12@0:4@8
+- cancelLongPressTimer  v8@0:4
+- didMoveToWindow  v8@0:4
+- touchesCancelled:withEvent:  v16@0:4@8@12
+- touchesBegan:withEvent:  v16@0:4@8@12
+- touchesMoved:withEvent:  v16@0:4@8@12
+- touchesEnded:withEvent:  v16@0:4@8@12
+- isTouchDownInIcon  c8@0:4
+- setTouchDownInIcon:  v12@0:4c8
+- pressesBegan:withEvent:  v16@0:4@8@12
+- pressesChanged:withEvent:  v16@0:4@8@12
+- pressesCancelled:withEvent:  v16@0:4@8@12
+- pressesEnded:withEvent:  v16@0:4@8@12
+- setIsEditing:  v12@0:4c8
+- setIsEditing:animated:  v16@0:4c8c12
+- isEditing  c8@0:4
+- _applyEditingStateAnimated:  v12@0:4c8
+- _updateCloseBoxAnimated:  v12@0:4c8
+- _isShowingCloseBox  c8@0:4
+- _closeBoxTapped  v8@0:4
+- pointInside:withEvent:  c20@0:4{CGPoint=ff}8@16
+- snapshotEdgeInsets  {UIEdgeInsets=ffff}8@0:4
+- _delegateTouchEnded:  v12@0:4c8
+- _delegateTapAllowed  c8@0:4
+- settings:changedValueForKey:  v16@0:4@8@12
+- prepareForReuse  v8@0:4
+- _updateProgressAnimated:  v12@0:4c8
+- _backgroundContrastDidChange:  v12@0:4@8
+- _shouldAnimatePropertyWithKey:  c12@0:4@8
+- iconAccessoriesDidUpdate:  v12@0:4@8
+- iconLaunchEnabledDidChange:  v12@0:4@8
+- .cxx_destruct  v8@0:4
+- delegate  @8@0:4
+- setDelegate:  v12@0:4@8
+- observer  @8@0:4
+- setObserver:  v12@0:4@8
+- location  i8@0:4
+- currentLabelAccessoryType  i8@0:4
+- shortcutMenuPeekGesture  @8@0:4
+- shortcutMenuPresentProgress  @8@0:4
+- setShortcutMenuPresentProgress:  v12@0:4@8
+- legibilitySettings  @8@0:4
+- iconImageAlpha  f8@0:4
+- iconAccessoryAlpha  f8@0:4
+- iconLabelAlpha  f8@0:4
+- wallpaperRelativeImageCenter  {CGPoint=ff}8@0:4
+@end

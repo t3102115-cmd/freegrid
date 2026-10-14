@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>entry</key>
+	<dict>
+		<key>cell</key>
+		<string>PSLinkCell</string>
+		<key>label</key>
+		<string>FreeGrid</string>
+	</dict>
+	<key>title</key>
+	<string>FreeGrid</string>
+	<key>items</key>
+	<array>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Icon placement</string>
+			<key>footerText</key>
+			<string>Grid aligned: icons snap to grid slots, but any slot can stay empty. Free: icons go exactly where you drop them, even on top of each other. Changing the mode converts your layout and resprings.</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSLinkListCell</string>
+			<key>label</key>
+			<string>Mode</string>
+			<key>detail</key>
+			<string>PSListItemsController</string>
+			<key>defaults</key>
+			<string>com.example.freegrid.settings</string>
+			<key>key</key>
+			<string>mode</string>
+			<key>default</key>
+			<string>grid</string>
+			<key>validTitles</key>
+			<array>
+				<string>Grid aligned</string>
+				<string>Free (anywhere)</string>
+			</array>
+			<key>validValues</key>
+			<array>
+				<string>grid</string>
+				<string>free</string>
+			</array>
+			<key>PostNotification</key>
+			<string>com.example.freegrid/settings</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Reset</string>
+			<key>footerText</key>
+			<string>Turn on to restore the stock home screen layout (removes all gaps and free positions) and respring. The switch turns itself off again.</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>label</key>
+			<string>Reset layout</string>
+			<key>defaults</key>
+			<string>com.example.freegrid.settings</string>
+			<key>key</key>
+			<string>reset</string>
+			<key>default</key>
+			<false/>
+			<key>PostNotification</key>
+			<string>com.example.freegrid/settings</string>
+		</dict>
+	</array>
+</dict>
+</plist>

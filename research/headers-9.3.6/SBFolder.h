@@ -1,0 +1,118 @@
+@interface SBFolder : NSObject
+  ivar _displayName  @"NSString"
+  ivar _defaultDisplayName  @"NSString"
+  ivar _displayNameDirty  c
+  ivar _open  c
+  ivar _icon  @"SBFolderIcon"
+  ivar _cancelable  c
+  ivar _addedIcons  @"NSMutableSet"
+  ivar _removedIcons  @"NSMutableSet"
+  ivar _coalesceChangesRequests  @"NSCountedSet"
+  ivar _maxListCount  I
+  ivar _maxIconCountInLists  I
+  ivar _nodeObservers  @"NSHashTable"
+  ivar _folderObservers  @"NSHashTable"
+  ivar _lists  @"SBIconIndexMutableList"
+  ivar _parentFolder  @"SBFolder"
+  @property displayName  T@"NSString",C,N,V_displayName
+  @property open  Tc,N,GisOpen,V_open
+  @property icon  T@"SBFolderIcon",W,N,V_icon
+  @property cancelable  Tc,N,GisCancelable,V_cancelable
+  @property parentFolder  T@"SBFolder",W,N,V_parentFolder
+  @property lists  T@"NSArray",R,C,N
+  @property listCount  TI,R,N
+  @property maxListCount  TI,R,N
+  @property maxIconCountInLists  TI,R,N,V_maxIconCountInLists
+  @property hash  TI,R
+  @property superclass  T#,R
+  @property description  T@"NSString",R,C
+  @property debugDescription  T@"NSString",R,C
++ isRootFolderClass  c8@0:4
+- isRootFolder  c8@0:4
+- listModelClass  #8@0:4
+- initWithMaxListCount:maxIconCountInLists:  @16@0:4I8I12
+- init  @8@0:4
+- dealloc  v8@0:4
+- addFolderObserver:  v12@0:4@8
+- removeFolderObserver:  v12@0:4@8
+- setDisplayName:  v12@0:4@8
+- defaultDisplayName  @8@0:4
+- setDefaultDisplayName:  v12@0:4@8
+- lists  @8@0:4
+- listCount  I8@0:4
+- maxListCount  I8@0:4
+- isEmpty  c8@0:4
+- isFull  c8@0:4
+- shouldRemoveWhenEmpty  c8@0:4
+- canRemoveIcons  c8@0:4
+- canEditDisplayName  c8@0:4
+- _listsForCompaction  @8@0:4
+- compactLists  c8@0:4
+- compactIconsAndLists  v8@0:4
+- _addList:  v12@0:4@8
+- _setLists:  v12@0:4@8
+- _removeLists:  v12@0:4@8
+- addEmptyList  @8@0:4
+- removeEmptyList:  v12@0:4@8
+- isIconStateDirty  c8@0:4
+- markIconStateClean  v8@0:4
+- _createNewListWithIcon:  @12@0:4@8
+- listAtIndex:  @12@0:4I8
+- indexOfList:  I12@0:4@8
+- purgeLists  v8@0:4
+- placeIcon:atIndexPath:  @16@0:4@8^@12
+- insertIcon:atIndexPath:  @16@0:4@8^@12
+- removeIconAtIndexPath:  v12@0:4@8
+- addIcon:  @12@0:4@8
+- canAddIcon  c8@0:4
+- performCascadingIconInsertion:indexPath:  @16@0:4@8@12
+- performCascadingIconInsertion:listIndex:iconIndex:  @20@0:4@8I12I16
+- indexPathForFirstFreeSlotAvoidingFirstList:  @12@0:4c8
+- iconsOfClass:  @12@0:4#8
+- allIcons  @8@0:4
+- leafIcons  @8@0:4
+- folderIcons  @8@0:4
+- visibleIcons  @8@0:4
+- orderedIcons  @8@0:4
+- listContainingIcon:  @12@0:4@8
+- listContainingLeafIconWithIdentifier:  @12@0:4@8
+- indexPathForNodeIdentifier:  @12@0:4@8
+- indexPathForIcon:  @12@0:4@8
+- indexPathForIcon:includingPlaceholders:  @16@0:4@8c12
+- indexPathForIconWithIdentifier:  @12@0:4@8
+- iconAtIndexPath:  @12@0:4@8
+- folderContainingIndexPath:relativeIndexPath:  @16@0:4@8^@12
+- _isCoalescingContentChanges  c8@0:4
+- startCoalescingContentChangesWithRequestID:  v12@0:4@8
+- stopCoalescingContentChangesForRequestID:  v12@0:4@8
+- stopCoalescingContentChangesForRequestID:forceReload:  v16@0:4@8c12
+- enumerateAllIconsUsingBlock:  v12@0:4@?8
+- sort  v8@0:4
+- didAddFolder:  v12@0:4@8
+- didRemoveFolder:  v12@0:4@8
+- nodeIdentifier  @8@0:4
+- containsNodeIdentifier:  c12@0:4@8
+- containedNodeIdentifiers  @8@0:4
+- indexPathsForContainedNodeIdentifier:prefixPath:  @16@0:4@8@12
+- nodesAlongIndexPath:consumedIndexes:  @16@0:4@8I12
+- addNodeObserver:  v12@0:4@8
+- removeNodeObserver:  v12@0:4@8
+- nodeDescriptionWithPrefix:  @12@0:4@8
+- description  @8@0:4
+- list:didAddContainedNodeIdentifiers:  v16@0:4@8@12
+- list:didRemoveContainedNodeIdentifiers:  v16@0:4@8@12
+- iconList:didAddIcon:  v16@0:4@8@12
+- iconList:didReplaceIcon:withIcon:  v20@0:4@8@12@16
+- iconList:didRemoveIcon:  v16@0:4@8@12
+- .cxx_destruct  v8@0:4
+- displayName  @8@0:4
+- isOpen  c8@0:4
+- setOpen:  v12@0:4c8
+- icon  @8@0:4
+- setIcon:  v12@0:4@8
+- isCancelable  c8@0:4
+- setCancelable:  v12@0:4c8
+- parentFolder  @8@0:4
+- setParentFolder:  v12@0:4@8
+- maxIconCountInLists  I8@0:4
+@end
